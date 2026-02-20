@@ -1,0 +1,39 @@
+{
+  "physical": [
+    { "id": "phy-1", "type": "physical", "text": "identify.signs.phy1", "severity": "moderate" },
+    { "id": "phy-2", "type": "physical", "text": "identify.signs.phy2", "severity": "severe" },
+    { "id": "phy-3", "type": "physical", "text": "identify.signs.phy3", "severity": "moderate" },
+    { "id": "phy-4", "type": "physical", "text": "identify.signs.phy4", "severity": "severe" },
+    { "id": "phy-5", "type": "behavioral", "text": "identify.signs.phy5", "severity": "moderate" },
+    { "id": "phy-6", "type": "behavioral", "text": "identify.signs.phy6", "severity": "mild" },
+    { "id": "phy-7", "type": "behavioral", "text": "identify.signs.phy7", "severity": "mild" },
+    { "id": "phy-8", "type": "behavioral", "text": "identify.signs.phy8", "severity": "mild" }
+  ],
+  "emotional": [
+    { "id": "emo-1", "type": "physical", "text": "identify.signs.emo1", "severity": "mild" },
+    { "id": "emo-2", "type": "physical", "text": "identify.signs.emo2", "severity": "mild" },
+    { "id": "emo-3", "type": "behavioral", "text": "identify.signs.emo3", "severity": "moderate" },
+    { "id": "emo-4", "type": "behavioral", "text": "identify.signs.emo4", "severity": "mild" },
+    { "id": "emo-5", "type": "behavioral", "text": "identify.signs.emo5", "severity": "moderate" },
+    { "id": "emo-6", "type": "behavioral", "text": "identify.signs.emo6", "severity": "mild" }
+  ],
+  "sexual": [
+    { "id": "sex-1", "type": "physical", "text": "identify.signs.sex1", "severity": "severe" },
+    { "id": "sex-2", "type": "physical", "text": "identify.signs.sex2", "severity": "severe" },
+    { "id": "sex-3", "type": "physical", "text": "identify.signs.sex3", "severity": "severe" },
+    { "id": "sex-4", "type": "behavioral", "text": "identify.signs.sex4", "severity": "severe" },
+    { "id": "sex-5", "type": "behavioral", "text": "identify.signs.sex5", "severity": "moderate" },
+    { "id": "sex-6", "type": "behavioral", "text": "identify.signs.sex6", "severity": "moderate" },
+    { "id": "sex-7", "type": "behavioral", "text": "identify.signs.sex7", "severity": "moderate" }
+  ],
+  "neglect": [
+    { "id": "neg-1", "type": "physical", "text": "identify.signs.neg1", "severity": "severe" },
+    { "id": "neg-2", "type": "physical", "text": "identify.signs.neg2", "severity": "moderate" },
+    { "id": "neg-3", "type": "physical", "text": "identify.signs.neg3", "severity": "moderate" },
+    { "id": "neg-4", "type": "physical", "text": "identify.signs.neg4", "severity": "severe" },
+    { "id": "neg-5", "type": "behavioral", "text": "identify.signs.neg5", "severity": "moderate" },
+    { "id": "neg-6", "type": "behavioral", "text": "identify.signs.neg6", "severity": "mild" },
+    { "id": "neg-7", "type": "behavioral", "text": "identify.signs.neg7", "severity": "mild" },
+    { "id": "neg-8", "type": "behavioral", "text": "identify.signs.neg8", "severity": "mild" }
+  ]
+}

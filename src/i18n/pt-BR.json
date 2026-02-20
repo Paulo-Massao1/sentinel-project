@@ -1,15 +1,90 @@
 {
   "app": {
     "title": "SENTINEL",
-    "tagline": "Toda crianca merece alguem que nao se cale.",
-    "footer": "Nenhum dado e coletado. Tudo permanece no seu dispositivo."
+    "tagline": "Toda criança merece alguém que não se cale.",
+    "footer": "Nenhum dado é coletado. Tudo permanece no seu dispositivo."
   },
   "nav": {
     "identify": "IDENTIFICAR",
     "identifyDesc": "Aprenda a reconhecer os sinais de abuso",
     "document": "DOCUMENTAR",
-    "documentDesc": "Registre o que voce observou com seguranca",
+    "documentDesc": "Registre o que você observou com segurança",
     "act": "AGIR",
     "actDesc": "Saiba onde e como denunciar"
+  },
+  "identify": {
+    "title": "IDENTIFICAR",
+    "subtitle": "Selecione o tipo de abuso suspeito para ver os sinais mais comuns.",
+    "back": "Voltar",
+    "categories": {
+      "physical": "Físico",
+      "emotional": "Emocional",
+      "sexual": "Sexual",
+      "neglect": "Negligência",
+      "all": "Não tenho certeza"
+    },
+    "typeLabels": {
+      "physical": "Sinais físicos",
+      "behavioral": "Sinais comportamentais"
+    },
+    "signs": {
+      "phy1": "Hematomas, vergões ou queimaduras sem explicação",
+      "phy2": "Fraturas ou ossos quebrados sem explicação",
+      "phy3": "Lesões em diferentes estágios de cicatrização",
+      "phy4": "Marcas com formato de objetos (cinto, fio, cigarro)",
+      "phy5": "Encolhe-se diante de movimentos bruscos ou toque",
+      "phy6": "Parece constantemente em alerta ou vigilante",
+      "phy7": "Expressa medo de ir para casa",
+      "phy8": "Dá explicações inconsistentes ou improváveis para lesões",
+      "emo1": "Distúrbios repentinos de fala ou sono",
+      "emo2": "Queixas físicas (dores de cabeça, dores de estômago) sem causa médica",
+      "emo3": "Comportamento extremo — excessivamente passivo ou agressivo",
+      "emo4": "Autoestima incomumente baixa ou comentários autodepreciativos",
+      "emo5": "Age de forma inadequadamente adulta ou regride a comportamentos infantis",
+      "emo6": "Medo desproporcional de cometer erros",
+      "sex1": "Dificuldade para andar ou sentar",
+      "sex2": "Roupa íntima manchada, rasgada ou com sangue",
+      "sex3": "DSTs ou gravidez em criança menor de 14 anos",
+      "sex4": "Conhecimento ou comportamento sexual inadequado para a idade",
+      "sex5": "Medo de uma pessoa ou lugar específico",
+      "sex6": "Pesadelos recorrentes ou enurese noturna repentina",
+      "sex7": "Desenhos, linguagem ou brincadeiras sexualizadas",
+      "neg1": "Desnutrição visível ou perda significativa de peso",
+      "neg2": "Higiene constantemente precária (sem banho, odor forte)",
+      "neg3": "Roupas inadequadas para o clima",
+      "neg4": "Problemas médicos ou dentários não tratados",
+      "neg5": "Reclama de fome constante ou esconde comida",
+      "neg6": "Faltas escolares frequentes e sem explicação",
+      "neg7": "Assume responsabilidades de adulto (cuidar de irmãos, cozinhar)",
+      "neg8": "Adormece frequentemente em sala de aula"
+    },
+    "results": {
+      "emergency": {
+        "title": "Preocupação imediata",
+        "description": "Os sinais selecionados sugerem uma situação que pode exigir atenção urgente. A segurança de uma criança pode estar em risco neste momento.",
+        "cta": "Ligue para o serviço de emergência agora"
+      },
+      "high": {
+        "title": "Alto nível de preocupação",
+        "description": "Múltiplos sinais graves foram identificados. É fortemente recomendado reportar à autoridade competente.",
+        "cta": "Veja o guia passo a passo para denunciar"
+      },
+      "medium": {
+        "title": "Nível moderado de preocupação",
+        "description": "Vários sinais foram identificados. É recomendado registrar suas observações e continuar monitorando a situação.",
+        "cta": "Registre o que você observou",
+        "extra": "Continue observando e documente qualquer mudança ao longo do tempo."
+      },
+      "low": {
+        "title": "Baixo nível de preocupação",
+        "description": "Alguns sinais foram notados. Embora possam não confirmar abuso isoladamente, é boa prática documentar e permanecer atento.",
+        "cta": "Registre o que você observou",
+        "extra": "Fique atento e observe se sinais adicionais aparecem ao longo do tempo."
+      }
+    },
+    "emptyState": "Escolha uma categoria acima para ver os sinais associados a cada tipo de abuso. Se não tiver certeza, selecione \"Não tenho certeza\" para ver todos os sinais de uma vez.",
+    "callout": "Um único sinal não confirma abuso. A combinação de sinais, a repetição ao longo do tempo e o contexto é que devem gerar preocupação. Não é seu papel investigar — é seu papel reportar.",
+    "checked": "{{count}} sinal selecionado",
+    "checked_plural": "{{count}} sinais selecionados"
   }
 }

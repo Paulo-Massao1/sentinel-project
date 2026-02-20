@@ -11,5 +11,80 @@
     "documentDesc": "Record what you observed safely",
     "act": "ACT",
     "actDesc": "Know where and how to report"
+  },
+  "identify": {
+    "title": "IDENTIFY",
+    "subtitle": "Select the type of suspected abuse to see common signs.",
+    "back": "Back",
+    "categories": {
+      "physical": "Physical",
+      "emotional": "Emotional",
+      "sexual": "Sexual",
+      "neglect": "Neglect",
+      "all": "I'm not sure"
+    },
+    "typeLabels": {
+      "physical": "Physical signs",
+      "behavioral": "Behavioral signs"
+    },
+    "signs": {
+      "phy1": "Unexplained bruises, welts, or burns",
+      "phy2": "Unexplained fractures or broken bones",
+      "phy3": "Injuries at different stages of healing",
+      "phy4": "Marks shaped like objects (belt, cord, cigarette)",
+      "phy5": "Flinches at sudden movements or touch",
+      "phy6": "Seems constantly on alert or watchful",
+      "phy7": "Expresses fear of going home",
+      "phy8": "Gives inconsistent or unlikely explanations for injuries",
+      "emo1": "Sudden speech disorders or sleep disturbances",
+      "emo2": "Physical complaints (headaches, stomachaches) with no medical cause",
+      "emo3": "Extreme behavior — overly passive or overly aggressive",
+      "emo4": "Unusually low self-esteem or self-deprecating statements",
+      "emo5": "Acts inappropriately adult-like or regresses to younger behavior",
+      "emo6": "Disproportionate fear of making mistakes",
+      "sex1": "Difficulty walking or sitting",
+      "sex2": "Stained, torn, or bloody underwear",
+      "sex3": "STDs or pregnancy in a child under 14",
+      "sex4": "Age-inappropriate sexual knowledge or behavior",
+      "sex5": "Fear of a specific person or place",
+      "sex6": "Recurring nightmares or sudden bedwetting",
+      "sex7": "Sexualized drawings, language, or play",
+      "neg1": "Visible malnutrition or significant weight loss",
+      "neg2": "Consistently poor hygiene (unwashed, strong odor)",
+      "neg3": "Clothing inappropriate for the weather",
+      "neg4": "Untreated medical or dental problems",
+      "neg5": "Complains of constant hunger or hoards food",
+      "neg6": "Frequent unexplained absences from school",
+      "neg7": "Takes on adult responsibilities (caring for siblings, cooking)",
+      "neg8": "Frequently falls asleep in class"
+    },
+    "results": {
+      "emergency": {
+        "title": "Immediate concern",
+        "description": "The signs you selected suggest a situation that may require urgent attention. A child's safety could be at risk right now.",
+        "cta": "Call emergency services now"
+      },
+      "high": {
+        "title": "High level of concern",
+        "description": "Multiple serious signs were identified. Reporting to the appropriate authority is strongly recommended.",
+        "cta": "See step-by-step guide to report"
+      },
+      "medium": {
+        "title": "Moderate level of concern",
+        "description": "Several signs were identified. Recording your observations and continuing to monitor the situation is recommended.",
+        "cta": "Record what you observed",
+        "extra": "Continue observing and document any changes over time."
+      },
+      "low": {
+        "title": "Low level of concern",
+        "description": "A few signs were noted. While they may not confirm abuse on their own, it is good practice to document and remain attentive.",
+        "cta": "Record what you observed",
+        "extra": "Stay attentive and note if additional signs appear over time."
+      }
+    },
+    "emptyState": "Choose a category above to see the signs associated with each type of abuse. If you're unsure, select \"I'm not sure\" to see all signs at once.",
+    "callout": "A single sign does not confirm abuse. The combination of signs, repetition over time, and context are what should raise concern. It is not your role to investigate — it is your role to report.",
+    "checked": "{{count}} sign selected",
+    "checked_plural": "{{count}} signs selected"
   }
 }
