@@ -62,12 +62,14 @@
       "emergency": {
         "title": "Preocupação imediata",
         "description": "Os sinais selecionados sugerem uma situação que pode exigir atenção urgente. A segurança de uma criança pode estar em risco neste momento.",
-        "cta": "Ligue para o serviço de emergência agora"
+        "cta": "Ligue para o serviço de emergência agora",
+        "secondaryCta": "Registre o que você observou"
       },
       "high": {
         "title": "Alto nível de preocupação",
         "description": "Múltiplos sinais graves foram identificados. É fortemente recomendado reportar à autoridade competente.",
-        "cta": "Veja o guia passo a passo para denunciar"
+        "cta": "Veja o guia passo a passo para denunciar",
+        "secondaryCta": "Registre o que você observou"
       },
       "medium": {
         "title": "Nível moderado de preocupação",
@@ -85,6 +87,93 @@
     "emptyState": "Escolha uma categoria acima para ver os sinais associados a cada tipo de abuso. Se não tiver certeza, selecione \"Não tenho certeza\" para ver todos os sinais de uma vez.",
     "callout": "Um único sinal não confirma abuso. A combinação de sinais, a repetição ao longo do tempo e o contexto é que devem gerar preocupação. Não é seu papel investigar — é seu papel reportar.",
     "checked": "{{count}} sinal selecionado",
-    "checked_plural": "{{count}} sinais selecionados"
+    "checked_plural": "{{count}} sinais selecionados",
+    "casePicker": {
+      "title": "Para onde deve ir esta observação?",
+      "selectCase": "Selecione um caso existente",
+      "addToCase": "Adicionar a este caso",
+      "or": "ou",
+      "createNew": "Criar novo caso",
+      "cancel": "Cancelar"
+    }
+  },
+  "document": {
+    "title": "DOCUMENTAR",
+    "subtitle": "Registre suas observações com segurança. Todos os dados ficam no seu dispositivo.",
+    "back": "Voltar",
+    "cases": {
+      "newCase": "Novo Caso",
+      "empty": "Você ainda não está acompanhando nenhuma situação. Se notou algo preocupante com uma criança, crie um caso para documentar suas observações ao longo do tempo.",
+      "created": "Criado em {{date}}",
+      "statuses": {
+        "monitoring": "Monitorando",
+        "reported": "Reportado",
+        "closed": "Encerrado"
+      }
+    },
+    "newCase": {
+      "title": "NOVO CASO",
+      "nameLabel": "Nome do caso",
+      "namePlaceholder": "Dê um nome para este caso (ex: 'Criança do vizinho', 'Aluno da minha turma')",
+      "firstObservation": "Primeira observação",
+      "save": "Criar caso"
+    },
+    "caseDetail": {
+      "addObservation": "Adicionar Observação",
+      "exportPdf": "Exportar PDF",
+      "timeline": "Observações",
+      "noObservations": "Nenhuma observação ainda.",
+      "statusLabel": "Status:",
+      "deleteCase": "Excluir Caso",
+      "deleteCaseLink": "Excluir este caso",
+      "deleteCaseConfirm": "Isso excluirá permanentemente este caso e todas as suas observações. Esta ação não pode ser desfeita.",
+      "deleteObservation": "Excluir",
+      "deleteObsConfirm": "Esta observação será excluída permanentemente. Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "breadcrumbCases": "Casos",
+      "notFound": "Caso não encontrado."
+    },
+    "form": {
+      "dateLabel": "Data e hora da observação",
+      "categoryLabel": "Categoria",
+      "categoryPlaceholder": "Selecione uma categoria",
+      "categoryOptions": {
+        "physical": "Físico",
+        "emotional": "Emocional",
+        "sexual": "Sexual",
+        "neglect": "Negligência",
+        "unsure": "Não tenho certeza"
+      },
+      "signsLabel": "Sinais identificados",
+      "descriptionLabel": "Descrição",
+      "descriptionPlaceholder": "Descreva o que você observou, ouviu ou foi informado.",
+      "childInfoLabel": "Informações da criança",
+      "childInfoPlaceholder": "Idade aproximada, contexto, seu relacionamento com a criança.",
+      "concernLevelLabel": "Nível de preocupação",
+      "concernLevels": {
+        "low": "Baixo",
+        "medium": "Médio",
+        "high": "Alto",
+        "emergency": "Emergência"
+      },
+      "save": "Salvar",
+      "saved": "Salvo com sucesso"
+    },
+    "pdf": {
+      "title": "SENTINEL — Relatório de Observações",
+      "subtitle": "Relatório de Observações",
+      "generated": "Gerado em {{date}}",
+      "caseName": "Caso",
+      "category": "Categoria",
+      "status": "Status",
+      "created": "Criado em",
+      "date": "Data",
+      "concernLevel": "Nível de Preocupação",
+      "description": "Descrição",
+      "childInfo": "Informações da Criança",
+      "signs": "Sinais Identificados",
+      "observationLabel": "Observação {{number}}",
+      "footer": "Este relatório foi gerado pelo Sentinel. Todas as observações são subjetivas e devem ser avaliadas por profissionais qualificados."
+    }
   }
 }

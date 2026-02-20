@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signsData from "../data/signs.json";
 
 type Category = "physical" | "emotional" | "sexual" | "neglect";
@@ -62,6 +62,7 @@ function computeConcernLevel(
 
 export default function Identify() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<Category | "all" | null>(null);
   const [checked, setChecked] = useState<Set<string>>(new Set());
 
@@ -149,7 +150,7 @@ export default function Identify() {
 
         {/* Desktop empty state — instruction when no category is selected */}
         {!selected && (
-          <div className="hidden py-12 text-center sm:block">
+          <div className="py-12 text-center">
             <div className="mx-auto max-w-sm">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/5 text-3xl">
                 🔍
@@ -237,27 +238,67 @@ export default function Identify() {
 
               {/* CTA */}
               {concernLevel === "emergency" ? (
-                <a
-                  href="tel:911"
-                  className="mt-4 inline-block w-full rounded-lg bg-red-600 px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
-                >
-                  {t("identify.results.emergency.cta")}
-                </a>
+                <div>
+                  <a
+                    href="tel:911"
+                    className="mt-4 inline-block w-full rounded-lg bg-red-600 px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  >
+                    {t("identify.results.emergency.cta")}
+                  </a>
+                  <button
+                    onClick={() => {
+                      navigate("/document/new", {
+                        state: {
+                          category: selected === "all" ? "unsure" : selected,
+                          checkedSigns: [...checked],
+                          concernLevel,
+                        },
+                      });
+                    }}
+                    className="mt-3 w-full rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-center text-sm font-medium text-slate-300 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
+                  >
+                    {t("identify.results.emergency.secondaryCta")}
+                  </button>
+                </div>
               ) : concernLevel === "high" ? (
-                <Link
-                  to="/act"
-                  className="mt-4 inline-block w-full rounded-lg bg-[#2C5F8A] px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-[#2C5F8A]/80 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
-                >
-                  {t("identify.results.high.cta")}
-                </Link>
-              ) : (
                 <div>
                   <Link
-                    to="/document"
+                    to="/act"
                     className="mt-4 inline-block w-full rounded-lg bg-[#2C5F8A] px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-[#2C5F8A]/80 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
                   >
-                    {t(`identify.results.${concernLevel}.cta`)}
+                    {t("identify.results.high.cta")}
                   </Link>
+                  <button
+                    onClick={() => {
+                      navigate("/document/new", {
+                        state: {
+                          category: selected === "all" ? "unsure" : selected,
+                          checkedSigns: [...checked],
+                          concernLevel,
+                        },
+                      });
+                    }}
+                    className="mt-3 w-full rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-center text-sm font-medium text-slate-300 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
+                  >
+                    {t("identify.results.high.secondaryCta")}
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    onClick={() => {
+                      navigate("/document/new", {
+                        state: {
+                          category: selected === "all" ? "unsure" : selected,
+                          checkedSigns: [...checked],
+                          concernLevel,
+                        },
+                      });
+                    }}
+                    className="mt-4 w-full rounded-lg bg-[#2C5F8A] px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-[#2C5F8A]/80 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
+                  >
+                    {t(`identify.results.${concernLevel}.cta`)}
+                  </button>
                   <p className="mt-3 text-xs leading-relaxed text-slate-400">
                     {t(`identify.results.${concernLevel}.extra`)}
                   </p>
@@ -276,6 +317,7 @@ export default function Identify() {
           </div>
         )}
       </main>
+
     </div>
   );
 }
