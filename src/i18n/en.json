@@ -1,0 +1,15 @@
+{
+  "app": {
+    "title": "SENTINEL",
+    "tagline": "Every child deserves someone who won't stay silent.",
+    "footer": "No data is collected. Everything stays on your device."
+  },
+  "nav": {
+    "identify": "IDENTIFY",
+    "identifyDesc": "Learn to recognize the signs of abuse",
+    "document": "DOCUMENT",
+    "documentDesc": "Record what you observed safely",
+    "act": "ACT",
+    "actDesc": "Know where and how to report"
+  }
+}

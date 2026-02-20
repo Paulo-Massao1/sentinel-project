@@ -1,0 +1,15 @@
+{
+  "app": {
+    "title": "SENTINEL",
+    "tagline": "Toda crianca merece alguem que nao se cale.",
+    "footer": "Nenhum dado e coletado. Tudo permanece no seu dispositivo."
+  },
+  "nav": {
+    "identify": "IDENTIFICAR",
+    "identifyDesc": "Aprenda a reconhecer os sinais de abuso",
+    "document": "DOCUMENTAR",
+    "documentDesc": "Registre o que voce observou com seguranca",
+    "act": "AGIR",
+    "actDesc": "Saiba onde e como denunciar"
+  }
+}
