@@ -259,5 +259,10 @@
       "portugal": "Emergency",
       "uk": "Emergency Services"
     }
+  },
+  "install": {
+    "message": "Install Sentinel for offline access",
+    "button": "Install",
+    "dismiss": "Dismiss"
   }
 }

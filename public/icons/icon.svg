@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="64" fill="#FFFFFF"/>
+  <!-- Shield shape -->
+  <path d="M256 56 L420 120 L420 260 Q420 380 256 456 Q92 380 92 260 L92 120 Z" fill="#1A2B4A"/>
+  <!-- Inner shield highlight -->
+  <path d="M256 88 L396 144 L396 256 Q396 362 256 430 Q116 362 116 256 L116 144 Z" fill="#1A2B4A" stroke="#2C5F8A" stroke-width="4"/>
+  <!-- Eye/watch symbol — stylized open eye -->
+  <ellipse cx="256" cy="240" rx="80" ry="50" fill="none" stroke="#FFFFFF" stroke-width="10"/>
+  <circle cx="256" cy="240" r="24" fill="#FFFFFF"/>
+  <circle cx="256" cy="240" r="12" fill="#2C5F8A"/>
+  <!-- Hand below — open protective palm -->
+  <path d="M200 320 Q210 290 230 300 L240 310 Q245 280 260 280 Q275 280 275 310 L278 300 Q290 285 300 300 L305 310 Q315 295 325 310 L330 340 Q330 380 270 390 L240 390 Q195 385 190 350 Z" fill="#FFFFFF" opacity="0.9"/>
+</svg>

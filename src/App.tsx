@@ -8,6 +8,7 @@ import Act from "./pages/Act";
 import Sources from "./pages/Sources";
 import EmergencyButton from "./components/EmergencyButton";
 import LanguageToggle from "./components/LanguageToggle";
+import InstallBanner from "./components/InstallBanner";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/sources" element={<Sources />} />
       </Routes>
       <EmergencyButton />
+      <InstallBanner />
     </BrowserRouter>
   );
 }

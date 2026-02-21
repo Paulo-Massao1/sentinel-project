@@ -9,33 +9,59 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.svg"],
+      includeAssets: ["favicon.ico", "favicon.svg", "icons/*.png"],
       manifest: {
         name: "Sentinel",
         short_name: "Sentinel",
         description:
-          "Identify, document, and report suspected child abuse.",
+          "Identify, document, and report signs of child abuse",
         theme_color: "#1A2B4A",
-        background_color: "#1A2B4A",
+        background_color: "#FFFFFF",
         display: "standalone",
-        scope: "/",
         start_url: "/",
         icons: [
           {
-            src: "pwa-192x192.png",
+            src: "icons/icon-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "pwa-512x512.png",
+            src: "icons/icon-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
           {
-            src: "pwa-512x512.png",
+            src: "icons/icon-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "any maskable",
+          },
+        ],
+      },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,json,woff,woff2}"],
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:js|css|png|jpg|jpeg|svg|gif|ico|woff|woff2)$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "static-assets",
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
+            },
+          },
+          {
+            urlPattern: ({ request }) => request.mode === "navigate",
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "pages",
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 7 * 24 * 60 * 60,
+              },
+            },
           },
         ],
       },
