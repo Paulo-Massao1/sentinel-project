@@ -53,6 +53,16 @@ export function useCases() {
     });
   }
 
+  async function updateObservation(
+    observationId: number,
+    fields: Partial<Omit<Observation, "id" | "caseId" | "createdAt">>,
+  ): Promise<void> {
+    const obs = await db.observations.get(observationId);
+    if (!obs) return;
+    await db.observations.update(observationId, fields);
+    await db.cases.update(obs.caseId, { updatedAt: new Date().toISOString() });
+  }
+
   async function deleteObservation(observationId: number): Promise<void> {
     await db.observations.delete(observationId);
   }
@@ -61,6 +71,7 @@ export function useCases() {
     cases: cases ?? [],
     createCase,
     addObservation,
+    updateObservation,
     updateCaseStatus,
     deleteCase,
     deleteObservation,

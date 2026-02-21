@@ -121,7 +121,10 @@
     },
     "caseDetail": {
       "addObservation": "Add Observation",
-      "exportPdf": "Export PDF",
+      "exportPdf": "Export Full Report",
+      "editObservation": "Edit",
+      "editingObservation": "Editing observation",
+      "typeLabel": "Type:",
       "timeline": "Observations",
       "noObservations": "No observations yet.",
       "statusLabel": "Status:",
@@ -204,12 +207,17 @@
       "mainChannel": "Main channel",
       "emergency": "Emergency",
       "online": "Online resource",
+      "note": "Note",
       "countries": {
         "brazil": "Brazil",
         "canada": "Canada",
         "usa": "USA",
         "portugal": "Portugal",
         "uk": "United Kingdom"
+      },
+      "notes": {
+        "canada": "Child abuse reports in Canada are handled by provincial/territorial child protection agencies. Contact your local Children's Aid Society or equivalent service.",
+        "usa": "Childhelp provides guidance and referrals. To file a report, contact your local Child Protective Services (CPS) or law enforcement directly."
       }
     },
     "script": {
@@ -259,6 +267,9 @@
       "portugal": "Emergency",
       "uk": "Emergency Services"
     }
+  },
+  "common": {
+    "switchLanguage": "Switch to Portuguese"
   },
   "install": {
     "message": "Install Sentinel for offline access",

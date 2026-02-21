@@ -1,5 +1,6 @@
 import type { TFunction } from "i18next";
 import type { Case, Observation } from "../types";
+import { formatDateTime } from "./date";
 
 interface ExportPdfParams {
   caseData: Case;
@@ -21,7 +22,7 @@ export async function exportCasePdf({
   const margin = 14;
   const contentWidth = pageWidth - margin * 2;
 
-  function addHeader() {
+  function addHeader(): void {
     doc.setFillColor(26, 43, 74);
     doc.rect(0, 0, pageWidth, 22, "F");
     doc.setTextColor(255, 255, 255);
@@ -48,7 +49,7 @@ export async function exportCasePdf({
     );
   }
 
-  function addFooter() {
+  function addFooter(): void {
     doc.setFontSize(7);
     doc.setTextColor(150, 150, 150);
     const footerLines = doc.splitTextToSize(
@@ -68,6 +69,7 @@ export async function exportCasePdf({
     maxW: number,
     draw: boolean,
   ): number {
+    if (!value) return y;
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
     doc.setTextColor(60, 60, 60);
@@ -93,13 +95,14 @@ export async function exportCasePdf({
     startY: number,
     draw: boolean,
   ): number {
+    if (!obs) return startY;
     const innerX = margin + 6;
     const innerW = contentWidth - 12;
 
     const obsLabel =
       t("document.pdf.observationLabel", { number: index + 1 }) +
       " — " +
-      new Date(obs.date).toLocaleString();
+      formatDateTime(obs.date);
     const concernLabel = t(
       `document.form.concernLevels.${obs.concernLevel}`,
     );
@@ -138,6 +141,7 @@ export async function exportCasePdf({
     y += 4;
 
     if (obs.description) {
+      y += 2;
       y = addInlineField(
         t("document.pdf.description") + ":",
         obs.description,

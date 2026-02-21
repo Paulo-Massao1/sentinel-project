@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { setLanguage } from "../lib/detectLocale";
 
 export default function LanguageToggle() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isEn = i18n.language === "en";
 
   function toggle() {
@@ -15,7 +15,7 @@ export default function LanguageToggle() {
     <button
       onClick={toggle}
       className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
-      title={isEn ? "Mudar para Português" : "Switch to English"}
+      aria-label={t("common.switchLanguage")}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

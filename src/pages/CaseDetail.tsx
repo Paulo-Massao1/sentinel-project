@@ -3,44 +3,19 @@ import { useTranslation } from "react-i18next";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useCases, useCaseDetail } from "../hooks/useCases";
 import type { Observation } from "../types";
-import { toLocalDatetimeValue } from "../utils/date";
+import { toLocalDatetimeValue, formatDateTime } from "../utils/date";
+import { concernBadgeClass, concernBorderClass } from "../utils/concernLevel";
 import { exportCasePdf } from "../utils/pdf";
 
 const concernLevels = ["low", "medium", "high", "emergency"] as const;
 const statuses = ["monitoring", "reported", "closed"] as const;
-
-function concernBadgeClass(level: string) {
-  switch (level) {
-    case "emergency":
-      return "border-red-500/40 bg-red-900/30 text-red-300";
-    case "high":
-      return "border-orange-500/40 bg-orange-900/20 text-orange-300";
-    case "medium":
-      return "border-yellow-500/40 bg-yellow-900/20 text-yellow-300";
-    default:
-      return "border-white/10 bg-white/5 text-slate-300";
-  }
-}
-
-function concernBorderClass(level: string) {
-  switch (level) {
-    case "emergency":
-      return "border-l-red-500";
-    case "high":
-      return "border-l-orange-500";
-    case "medium":
-      return "border-l-blue-500";
-    default:
-      return "border-l-slate-500";
-  }
-}
 
 export default function CaseDetail() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const caseId = id ? Number(id) : undefined;
-  const { updateCaseStatus, deleteCase, addObservation, deleteObservation } =
+  const { updateCaseStatus, deleteCase, addObservation, updateObservation, deleteObservation } =
     useCases();
   const { caseData, observations, chronologicalObservations } =
     useCaseDetail(caseId);
@@ -50,6 +25,10 @@ export default function CaseDetail() {
   const [obsDate, setObsDate] = useState(toLocalDatetimeValue(new Date()));
   const [obsDescription, setObsDescription] = useState("");
   const [obsConcernLevel, setObsConcernLevel] = useState("");
+  const [obsChildInfo, setObsChildInfo] = useState("");
+
+  // Editing state
+  const [editingObsId, setEditingObsId] = useState<number | null>(null);
 
   // Expanded observation
   const [expandedId, setExpandedId] = useState<number | null>(null);
@@ -60,8 +39,8 @@ export default function CaseDetail() {
 
   // Reset form date when opening
   useEffect(() => {
-    if (showForm) setObsDate(toLocalDatetimeValue(new Date()));
-  }, [showForm]);
+    if (showForm && editingObsId === null) setObsDate(toLocalDatetimeValue(new Date()));
+  }, [showForm, editingObsId]);
 
   if (!caseData) {
     return (
@@ -71,45 +50,89 @@ export default function CaseDetail() {
     );
   }
 
-  async function handleAddObservation() {
-    if (!caseId || !obsConcernLevel) return;
-    await addObservation(caseId, {
-      date: new Date(obsDate).toISOString(),
-      description: obsDescription,
-      childInfo: "",
-      signsChecked: [],
-      concernLevel: obsConcernLevel,
-    });
+  function startEditing(obs: Observation) {
+    setEditingObsId(obs.id);
+    setObsDate(toLocalDatetimeValue(new Date(obs.date)));
+    setObsDescription(obs.description);
+    setObsConcernLevel(obs.concernLevel);
+    setObsChildInfo(obs.childInfo);
+    setShowForm(true);
+  }
+
+  function cancelForm() {
     setShowForm(false);
+    setEditingObsId(null);
     setObsDescription("");
     setObsConcernLevel("");
+    setObsChildInfo("");
+  }
+
+  async function handleSaveObservation() {
+    if (!caseId || !obsConcernLevel) return;
+    try {
+      if (editingObsId !== null) {
+        await updateObservation(editingObsId, {
+          date: new Date(obsDate).toISOString(),
+          description: obsDescription,
+          childInfo: obsChildInfo,
+          concernLevel: obsConcernLevel,
+        });
+      } else {
+        await addObservation(caseId, {
+          date: new Date(obsDate).toISOString(),
+          description: obsDescription,
+          childInfo: obsChildInfo,
+          signsChecked: [],
+          concernLevel: obsConcernLevel,
+        });
+      }
+      cancelForm();
+    } catch (error) {
+      console.error("Failed to save observation:", error);
+    }
   }
 
   async function handleDeleteCase() {
     if (!caseId) return;
-    await deleteCase(caseId);
-    navigate("/document", { replace: true });
+    try {
+      await deleteCase(caseId);
+      navigate("/document", { replace: true });
+    } catch (error) {
+      console.error("Failed to delete case:", error);
+    }
   }
 
   async function handleDeleteObservation() {
     if (deleteObsId === null) return;
-    await deleteObservation(deleteObsId);
-    setDeleteObsId(null);
-    if (expandedId === deleteObsId) setExpandedId(null);
+    try {
+      await deleteObservation(deleteObsId);
+      setDeleteObsId(null);
+      if (expandedId === deleteObsId) setExpandedId(null);
+    } catch (error) {
+      console.error("Failed to delete observation:", error);
+    }
   }
 
   async function handleStatusChange(status: string) {
     if (!caseId) return;
-    await updateCaseStatus(caseId, status);
+    try {
+      await updateCaseStatus(caseId, status);
+    } catch (error) {
+      console.error("Failed to update case status:", error);
+    }
   }
 
   async function handleExportPdf() {
     if (!caseData) return;
-    await exportCasePdf({
-      caseData,
-      observations: chronologicalObservations,
-      t,
-    });
+    try {
+      await exportCasePdf({
+        caseData,
+        observations: chronologicalObservations,
+        t,
+      });
+    } catch (error) {
+      console.error("Failed to export PDF:", error);
+    }
   }
 
   return (
@@ -126,6 +149,7 @@ export default function CaseDetail() {
             {caseData.name}
           </h1>
           <div className="mt-2 flex items-center gap-3">
+            <span className="text-xs text-slate-400">{t("document.caseDetail.typeLabel")}</span>
             <span
               className="rounded-full border px-2.5 py-0.5 text-xs font-medium border-[#2C5F8A]/40 bg-[#2C5F8A]/20 text-blue-300"
             >
@@ -153,7 +177,10 @@ export default function CaseDetail() {
           {/* Action buttons */}
           <div className="mt-4 flex gap-3">
             <button
-              onClick={() => setShowForm(!showForm)}
+              onClick={() => {
+                if (editingObsId !== null) cancelForm();
+                else setShowForm(!showForm);
+              }}
               className="flex-1 rounded-lg bg-[#2C5F8A] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#2C5F8A]/80 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
             >
               {t("document.caseDetail.addObservation")}
@@ -166,9 +193,14 @@ export default function CaseDetail() {
             </button>
           </div>
 
-          {/* Add observation form (inline) */}
+          {/* Add/Edit observation form (inline) */}
           {showForm && (
             <div className="mt-4 space-y-4 rounded-lg border border-white/10 bg-white/5 p-5">
+              {editingObsId !== null && (
+                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400/80">
+                  {t("document.caseDetail.editingObservation")}
+                </p>
+              )}
               <div>
                 <label className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-slate-400">
                   {t("document.form.dateLabel")}
@@ -190,6 +222,18 @@ export default function CaseDetail() {
                   placeholder={t("document.form.descriptionPlaceholder")}
                   rows={4}
                   className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 transition focus:border-[#2C5F8A] focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-slate-400">
+                  {t("document.form.childInfoLabel")}
+                </label>
+                <input
+                  type="text"
+                  value={obsChildInfo}
+                  onChange={(e) => setObsChildInfo(e.target.value)}
+                  placeholder={t("document.form.childInfoPlaceholder")}
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 transition focus:border-[#2C5F8A] focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
                 />
               </div>
               <div>
@@ -220,14 +264,14 @@ export default function CaseDetail() {
               </div>
               <div className="flex gap-3">
                 <button
-                  onClick={handleAddObservation}
+                  onClick={handleSaveObservation}
                   disabled={!obsConcernLevel}
                   className="flex-1 rounded-lg bg-[#2C5F8A] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#2C5F8A]/80 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   {t("document.form.save")}
                 </button>
                 <button
-                  onClick={() => setShowForm(false)}
+                  onClick={cancelForm}
                   className="rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
                 >
                   {t("document.caseDetail.cancel")}
@@ -250,18 +294,21 @@ export default function CaseDetail() {
           ) : (
             <div className="space-y-3">
               {observations.map((obs: Observation) => (
-                <div
+                <button
+                  type="button"
                   key={obs.id}
-                  className={`cursor-pointer rounded-lg border border-white/10 border-l-4 bg-white/5 p-4 transition hover:bg-white/10 ${concernBorderClass(obs.concernLevel)}`}
+                  className={`w-full cursor-pointer rounded-lg border border-white/10 border-l-4 bg-white/5 p-5 text-left transition hover:bg-white/10 ${concernBorderClass(obs.concernLevel)}`}
                   onClick={() =>
                     setExpandedId(expandedId === obs.id ? null : obs.id)
                   }
+                  aria-expanded={expandedId === obs.id}
                 >
                   <div className="flex items-start justify-between">
                     <p className="text-xs text-slate-400">
-                      {new Date(obs.date).toLocaleString()}
+                      {formatDateTime(obs.date)}
                     </p>
                     <svg
+                      aria-hidden="true"
                       className={`h-4 w-4 flex-shrink-0 text-slate-400 transition-transform ${expandedId === obs.id ? "rotate-180" : ""}`}
                       fill="none"
                       viewBox="0 0 24 24"
@@ -344,18 +391,29 @@ export default function CaseDetail() {
                         </div>
                       )}
 
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setDeleteObsId(obs.id);
-                        }}
-                        className="mt-2 rounded-lg border border-red-500/30 bg-red-900/20 px-4 py-2 text-xs font-medium text-red-300 transition hover:bg-red-900/40 focus:outline-none focus:ring-2 focus:ring-red-500"
-                      >
-                        {t("document.caseDetail.deleteObservation")}
-                      </button>
+                      <div className="mt-2 flex gap-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            startEditing(obs);
+                          }}
+                          className="rounded-lg border border-[#2C5F8A]/40 bg-[#2C5F8A]/20 px-4 py-2 text-xs font-medium text-blue-300 transition hover:bg-[#2C5F8A]/40 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
+                        >
+                          {t("document.caseDetail.editObservation")}
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setDeleteObsId(obs.id);
+                          }}
+                          className="rounded-lg border border-red-500/30 bg-red-900/20 px-4 py-2 text-xs font-medium text-red-300 transition hover:bg-red-900/40 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        >
+                          {t("document.caseDetail.deleteObservation")}
+                        </button>
+                      </div>
                     </div>
                   )}
-                </div>
+                </button>
               ))}
             </div>
           )}

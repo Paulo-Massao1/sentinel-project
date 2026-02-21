@@ -24,18 +24,20 @@ export default function CasesList() {
   return (
     <div className="flex min-h-svh flex-col">
       <header className="px-6 pt-8 pb-4">
-        <Link
-          to="/"
-          className="inline-block text-sm text-slate-400 transition hover:text-white"
-        >
-          &larr; {t("document.back")}
-        </Link>
-        <h1 className="mt-4 text-3xl font-extrabold tracking-[0.2em] text-white sm:text-4xl">
-          {t("document.title")}
-        </h1>
-        <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-300">
-          {t("document.subtitle")}
-        </p>
+        <div className="mx-auto max-w-lg">
+          <Link
+            to="/"
+            className="inline-block text-sm text-slate-400 transition hover:text-white"
+          >
+            &larr; {t("document.back")}
+          </Link>
+          <h1 className="mt-4 text-3xl font-extrabold tracking-[0.2em] text-white sm:text-4xl">
+            {t("document.title")}
+          </h1>
+          <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-300">
+            {t("document.subtitle")}
+          </p>
+        </div>
       </header>
 
       <main className="flex-1 px-6 pb-12">
@@ -64,6 +66,7 @@ export default function CasesList() {
                   <div className="flex items-start justify-between">
                     <h3 className="font-semibold text-white">{c.name}</h3>
                     <svg
+                      aria-hidden="true"
                       className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-400"
                       fill="none"
                       viewBox="0 0 24 24"

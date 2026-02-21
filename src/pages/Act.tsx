@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import channelsData from "../data/channels.json";
-
-type Country = keyof typeof channelsData;
+import type { Country } from "../types";
 
 const countries: Country[] = ["brazil", "canada", "usa", "portugal", "uk"];
 
@@ -174,6 +173,18 @@ export default function Act() {
                 {channel.online.name}
               </a>
             </div>
+
+            {/* Country-specific note */}
+            {t(`act.channels.notes.${selectedCountry}`, { defaultValue: "" }) && (
+              <div className="mt-4 rounded-md border border-yellow-500/20 bg-yellow-900/10 px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-widest text-yellow-400/80">
+                  {t("act.channels.note")}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-slate-300">
+                  {t(`act.channels.notes.${selectedCountry}`)}
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
@@ -212,6 +223,7 @@ export default function Act() {
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  aria-expanded={openFaq === idx}
                   className="flex w-full items-center justify-between px-5 py-4 text-left text-sm font-medium text-white transition hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
                 >
                   <span>{item.q}</span>

@@ -30,15 +30,19 @@ export default function NewCase() {
 
   async function handleSave() {
     if (!name.trim() || !category || !concernLevel) return;
-    const caseId = await createCase(name.trim(), category);
-    await addObservation(caseId, {
-      date: new Date(date).toISOString(),
-      description,
-      childInfo,
-      signsChecked,
-      concernLevel,
-    });
-    navigate(`/document/${caseId}`, { replace: true });
+    try {
+      const caseId = await createCase(name.trim(), category);
+      await addObservation(caseId, {
+        date: new Date(date).toISOString(),
+        description,
+        childInfo,
+        signsChecked,
+        concernLevel,
+      });
+      navigate(`/document/${caseId}`, { replace: true });
+    } catch (error) {
+      console.error("Failed to create case:", error);
+    }
   }
 
   return (

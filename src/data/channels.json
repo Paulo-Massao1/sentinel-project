@@ -17,9 +17,9 @@
   "canada": {
     "flag": "CA",
     "main": {
-      "name": "Provincial Child Services",
-      "phone": null,
-      "detail": null
+      "name": "Kids Help Phone",
+      "phone": "1-800-668-6868",
+      "detail": "24/7"
     },
     "emergency": {
       "phone": "911"
@@ -49,7 +49,7 @@
     "main": {
       "name": "SOS Crianca",
       "phone": "116 111",
-      "detail": null
+      "detail": "IAC — European child helpline"
     },
     "emergency": {
       "phone": "112"
@@ -64,7 +64,7 @@
     "main": {
       "name": "NSPCC",
       "phone": "0808 800 5000",
-      "detail": null
+      "detail": "Adults can report concerns"
     },
     "emergency": {
       "phone": "999"

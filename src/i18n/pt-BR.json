@@ -121,7 +121,10 @@
     },
     "caseDetail": {
       "addObservation": "Adicionar Observação",
-      "exportPdf": "Exportar PDF",
+      "exportPdf": "Exportar Relatório Completo",
+      "editObservation": "Editar",
+      "editingObservation": "Editando observação",
+      "typeLabel": "Tipo:",
       "timeline": "Observações",
       "noObservations": "Nenhuma observação ainda.",
       "statusLabel": "Status:",
@@ -204,12 +207,17 @@
       "mainChannel": "Canal principal",
       "emergency": "Emergência",
       "online": "Recurso online",
+      "note": "Nota",
       "countries": {
         "brazil": "Brasil",
         "canada": "Canadá",
         "usa": "EUA",
         "portugal": "Portugal",
         "uk": "Reino Unido"
+      },
+      "notes": {
+        "canada": "Denúncias de abuso infantil no Canadá são tratadas por agências provinciais/territoriais de proteção à criança. Entre em contato com a Children's Aid Society local ou serviço equivalente.",
+        "usa": "A Childhelp oferece orientação e encaminhamentos. Para registrar uma denúncia, entre em contato diretamente com o Child Protective Services (CPS) local ou as autoridades policiais."
       }
     },
     "script": {
@@ -259,6 +267,9 @@
       "portugal": "Emergência",
       "uk": "Serviços de Emergência"
     }
+  },
+  "common": {
+    "switchLanguage": "Mudar para Inglês"
   },
   "install": {
     "message": "Instale o Sentinel para acesso offline",

@@ -66,7 +66,7 @@ export default function EmergencyButton() {
           <button
             onClick={() => setShowPicker(!showPicker)}
             className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#1A2B4A] text-xs font-bold text-slate-300 shadow-lg transition hover:bg-[#2C5F8A] focus:outline-none focus:ring-2 focus:ring-[#2C5F8A] sm:h-10 sm:w-10"
-            title={t("emergency.selectCountry")}
+            aria-label={t("emergency.selectCountry")}
           >
             {channelsData[country].flag}
           </button>
@@ -77,9 +77,11 @@ export default function EmergencyButton() {
               setShowPicker(false);
               setShowModal(true);
             }}
+            aria-label={t("emergency.button")}
             className="flex h-10 items-center gap-1.5 rounded-full bg-red-600 px-3 shadow-lg shadow-red-900/40 transition hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 sm:h-12 sm:gap-2 sm:px-5"
           >
             <svg
+              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"

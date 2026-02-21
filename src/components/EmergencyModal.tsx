@@ -33,6 +33,7 @@ export default function EmergencyModal({ country, onClose }: EmergencyModalProps
           </button>
           <a
             href={`tel:${phone.replace(/[\s-]/g, "")}`}
+            aria-label={`${t("emergency.callNow")} ${phone}`}
             className="flex-1 rounded-lg bg-red-600 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400"
             onClick={onClose}
           >

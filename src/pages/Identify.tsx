@@ -71,18 +71,20 @@ export default function Identify() {
     <div className="flex min-h-svh flex-col">
       {/* Header */}
       <header className="px-6 pt-8 pb-4">
-        <Link
-          to="/"
-          className="inline-block text-sm text-slate-400 transition hover:text-white"
-        >
-          ← {t("identify.back")}
-        </Link>
-        <h1 className="mt-4 text-3xl font-extrabold tracking-[0.2em] text-white sm:text-4xl">
-          {t("identify.title")}
-        </h1>
-        <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-300">
-          {t("identify.subtitle")}
-        </p>
+        <div className="mx-auto max-w-2xl">
+          <Link
+            to="/"
+            className="inline-block text-sm text-slate-400 transition hover:text-white"
+          >
+            ← {t("identify.back")}
+          </Link>
+          <h1 className="mt-4 text-3xl font-extrabold tracking-[0.2em] text-white sm:text-4xl">
+            {t("identify.title")}
+          </h1>
+          <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-300">
+            {t("identify.subtitle")}
+          </p>
+        </div>
       </header>
 
       <main className="flex-1 px-6 pb-12">
