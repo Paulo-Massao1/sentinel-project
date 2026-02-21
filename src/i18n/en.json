@@ -104,6 +104,7 @@
     "back": "Back",
     "cases": {
       "newCase": "New Case",
+      "myCases": "My Cases",
       "empty": "You haven't started tracking any situations yet. If you've noticed something concerning about a child, start a case to document your observations over time.",
       "created": "Created {{date}}",
       "statuses": {
@@ -135,6 +136,7 @@
       "deleteObsConfirm": "This observation will be permanently deleted. This action cannot be undone.",
       "cancel": "Cancel",
       "breadcrumbCases": "Cases",
+      "observationNumber": "Observation {{number}}",
       "notFound": "Case not found."
     },
     "form": {
@@ -214,6 +216,10 @@
         "usa": "USA",
         "portugal": "Portugal",
         "uk": "United Kingdom"
+      },
+      "details": {
+        "portugal": "IAC — European child helpline",
+        "uk": "Adults can report concerns"
       },
       "notes": {
         "canada": "Child abuse reports in Canada are handled by provincial/territorial child protection agencies. Contact your local Children's Aid Society or equivalent service.",

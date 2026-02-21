@@ -1,5 +1,6 @@
 import type { Sign, Category, ConcernLevel } from "../types";
 
+/** Return Tailwind classes for a concern level badge (background, border, text color). */
 export function concernBadgeClass(level: string): string {
   switch (level) {
     case "emergency":
@@ -13,6 +14,7 @@ export function concernBadgeClass(level: string): string {
   }
 }
 
+/** Return Tailwind class for a concern level left border color. */
 export function concernBorderClass(level: string): string {
   switch (level) {
     case "emergency":
@@ -26,6 +28,7 @@ export function concernBorderClass(level: string): string {
   }
 }
 
+/** Compute concern level based on checked signs and their severities. */
 export function computeConcernLevel(
   checked: Set<string>,
   signMap: Map<string, Sign & { category: Category }>,

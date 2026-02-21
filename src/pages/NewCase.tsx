@@ -54,9 +54,11 @@ export default function NewCase() {
         >
           &larr; {t("document.back")}
         </Link>
-        <h1 className="mt-4 text-3xl font-extrabold tracking-[0.2em] text-white sm:text-4xl">
-          {t("document.newCase.title")}
-        </h1>
+        <div className="mx-auto max-w-lg">
+          <h1 className="mt-4 text-3xl font-extrabold tracking-[0.2em] text-white sm:text-4xl">
+            {t("document.newCase.title")}
+          </h1>
+        </div>
       </header>
 
       <main className="flex-1 px-6 pb-12">

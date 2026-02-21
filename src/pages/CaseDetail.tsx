@@ -25,7 +25,6 @@ export default function CaseDetail() {
   const [obsDate, setObsDate] = useState(toLocalDatetimeValue(new Date()));
   const [obsDescription, setObsDescription] = useState("");
   const [obsConcernLevel, setObsConcernLevel] = useState("");
-  const [obsChildInfo, setObsChildInfo] = useState("");
 
   // Editing state
   const [editingObsId, setEditingObsId] = useState<number | null>(null);
@@ -55,7 +54,6 @@ export default function CaseDetail() {
     setObsDate(toLocalDatetimeValue(new Date(obs.date)));
     setObsDescription(obs.description);
     setObsConcernLevel(obs.concernLevel);
-    setObsChildInfo(obs.childInfo);
     setShowForm(true);
   }
 
@@ -64,7 +62,6 @@ export default function CaseDetail() {
     setEditingObsId(null);
     setObsDescription("");
     setObsConcernLevel("");
-    setObsChildInfo("");
   }
 
   async function handleSaveObservation() {
@@ -74,14 +71,13 @@ export default function CaseDetail() {
         await updateObservation(editingObsId, {
           date: new Date(obsDate).toISOString(),
           description: obsDescription,
-          childInfo: obsChildInfo,
           concernLevel: obsConcernLevel,
         });
       } else {
         await addObservation(caseId, {
           date: new Date(obsDate).toISOString(),
           description: obsDescription,
-          childInfo: obsChildInfo,
+          childInfo: "",
           signsChecked: [],
           concernLevel: obsConcernLevel,
         });
@@ -226,18 +222,6 @@ export default function CaseDetail() {
               </div>
               <div>
                 <label className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-slate-400">
-                  {t("document.form.childInfoLabel")}
-                </label>
-                <input
-                  type="text"
-                  value={obsChildInfo}
-                  onChange={(e) => setObsChildInfo(e.target.value)}
-                  placeholder={t("document.form.childInfoPlaceholder")}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 transition focus:border-[#2C5F8A] focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
-                />
-              </div>
-              <div>
-                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-slate-400">
                   {t("document.form.concernLevelLabel")}
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -292,11 +276,17 @@ export default function CaseDetail() {
               </p>
             </div>
           ) : (
-            <div className="space-y-3">
-              {observations.map((obs: Observation) => (
+            <div className="space-y-5">
+              {observations.map((obs: Observation, idx: number) => (
+                <div key={obs.id}>
+                  {idx > 0 && (
+                    <div className="mb-4 border-t border-white/5" />
+                  )}
+                  <p className="mb-1.5 text-xs font-semibold uppercase tracking-widest text-slate-500">
+                    {t("document.caseDetail.observationNumber", { number: observations.length - idx })}
+                  </p>
                 <button
                   type="button"
-                  key={obs.id}
                   className={`w-full cursor-pointer rounded-lg border border-white/10 border-l-4 bg-white/5 p-5 text-left transition hover:bg-white/10 ${concernBorderClass(obs.concernLevel)}`}
                   onClick={() =>
                     setExpandedId(expandedId === obs.id ? null : obs.id)
@@ -414,6 +404,7 @@ export default function CaseDetail() {
                     </div>
                   )}
                 </button>
+                </div>
               ))}
             </div>
           )}

@@ -4,7 +4,7 @@
     "main": {
       "name": "Disque 100",
       "phone": "100",
-      "detail": "24h, free"
+      "detail": "24h"
     },
     "emergency": {
       "phone": "190"
@@ -47,9 +47,9 @@
   "portugal": {
     "flag": "PT",
     "main": {
-      "name": "SOS Crianca",
+      "name": "SOS Criança",
       "phone": "116 111",
-      "detail": "IAC — European child helpline"
+      "detail": null
     },
     "emergency": {
       "phone": "112"
@@ -64,7 +64,7 @@
     "main": {
       "name": "NSPCC",
       "phone": "0808 800 5000",
-      "detail": "Adults can report concerns"
+      "detail": null
     },
     "emergency": {
       "phone": "999"

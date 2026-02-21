@@ -8,6 +8,7 @@ interface ExportPdfParams {
   t: TFunction;
 }
 
+/** Generate and download a PDF report for a case with all its observations. */
 export async function exportCasePdf({
   caseData,
   observations,
@@ -132,7 +133,7 @@ export async function exportCasePdf({
       doc.setTextColor(60, 60, 60);
       doc.text(clLabel, innerX, y);
       doc.setFillColor(dotColor[0], dotColor[1], dotColor[2]);
-      doc.circle(innerX + clLabelW + 2, y - 2, 1.5, "F");
+      doc.circle(innerX + clLabelW + 2, y - 1.2, 1.5, "F");
       doc.setFont("helvetica", "normal");
       doc.setFontSize(9);
       doc.setTextColor(dotColor[0], dotColor[1], dotColor[2]);

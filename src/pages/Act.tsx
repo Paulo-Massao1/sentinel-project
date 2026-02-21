@@ -139,11 +139,16 @@ export default function Act() {
                   {channel.main.phone}
                 </a>
               )}
-              {channel.main.detail && (
-                <span className="ml-2 text-sm text-slate-400">
-                  ({channel.main.detail})
-                </span>
-              )}
+              {(() => {
+                const detailKey = `act.channels.details.${selectedCountry}`;
+                const i18nDetail = t(detailKey, { defaultValue: "" });
+                const detail = i18nDetail || channel.main.detail;
+                return detail ? (
+                  <span className="ml-2 text-sm text-slate-400">
+                    ({detail})
+                  </span>
+                ) : null;
+              })()}
             </div>
 
             {/* Emergency */}

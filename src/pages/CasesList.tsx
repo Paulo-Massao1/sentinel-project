@@ -24,13 +24,13 @@ export default function CasesList() {
   return (
     <div className="flex min-h-svh flex-col">
       <header className="px-6 pt-8 pb-4">
+        <Link
+          to="/"
+          className="inline-block text-sm text-slate-400 transition hover:text-white"
+        >
+          &larr; {t("document.back")}
+        </Link>
         <div className="mx-auto max-w-lg">
-          <Link
-            to="/"
-            className="inline-block text-sm text-slate-400 transition hover:text-white"
-          >
-            &larr; {t("document.back")}
-          </Link>
           <h1 className="mt-4 text-3xl font-extrabold tracking-[0.2em] text-white sm:text-4xl">
             {t("document.title")}
           </h1>
@@ -48,6 +48,12 @@ export default function CasesList() {
           >
             {t("document.cases.newCase")}
           </Link>
+
+          {cases.length > 0 && (
+            <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-400">
+              {t("document.cases.myCases")}
+            </h2>
+          )}
 
           {cases.length === 0 ? (
             <div className="py-12 text-center">

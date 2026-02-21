@@ -3,6 +3,7 @@ import type { Case, Observation } from "../types";
 
 export type { Case, Observation };
 
+/** IndexedDB database instance for local case and observation storage. */
 const db = new Dexie("SentinelDB") as Dexie & {
   cases: EntityTable<Case, "id">;
   observations: EntityTable<Observation, "id">;

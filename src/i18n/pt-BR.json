@@ -104,6 +104,7 @@
     "back": "Voltar",
     "cases": {
       "newCase": "Novo Caso",
+      "myCases": "Meus Casos",
       "empty": "Você ainda não está acompanhando nenhuma situação. Se notou algo preocupante com uma criança, crie um caso para documentar suas observações ao longo do tempo.",
       "created": "Criado em {{date}}",
       "statuses": {
@@ -135,6 +136,7 @@
       "deleteObsConfirm": "Esta observação será excluída permanentemente. Esta ação não pode ser desfeita.",
       "cancel": "Cancelar",
       "breadcrumbCases": "Casos",
+      "observationNumber": "Observação {{number}}",
       "notFound": "Caso não encontrado."
     },
     "form": {
@@ -214,6 +216,10 @@
         "usa": "EUA",
         "portugal": "Portugal",
         "uk": "Reino Unido"
+      },
+      "details": {
+        "portugal": "IAC — Linha europeia de apoio à criança",
+        "uk": "Adultos podem reportar preocupações"
       },
       "notes": {
         "canada": "Denúncias de abuso infantil no Canadá são tratadas por agências provinciais/territoriais de proteção à criança. Entre em contato com a Children's Aid Society local ou serviço equivalente.",

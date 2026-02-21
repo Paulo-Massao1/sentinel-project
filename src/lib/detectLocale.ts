@@ -34,6 +34,7 @@ const timezoneToCountry: Record<string, SupportedCountry> = {
   "Europe/London": "uk",
 };
 
+/** Detect user language from localStorage or browser settings, defaulting to English. */
 export function detectLanguage(): string {
   const stored = localStorage.getItem(LANG_KEY);
   if (stored) return stored;
@@ -44,10 +45,12 @@ export function detectLanguage(): string {
   return lang;
 }
 
+/** Persist the selected language to localStorage. */
 export function setLanguage(lang: string): void {
   localStorage.setItem(LANG_KEY, lang);
 }
 
+/** Detect user country from localStorage or timezone, defaulting to USA. */
 export function detectCountry(): SupportedCountry {
   const stored = localStorage.getItem(COUNTRY_KEY);
   if (stored && VALID_COUNTRIES.includes(stored as SupportedCountry)) {

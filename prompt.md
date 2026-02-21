@@ -1,86 +1,63 @@
-# Prompt: Design Polish, Reporting Channels Fix, Edit Observations, PDF Fix
+# Prompt: Code Documentation & Final Cleanup
 
 ## Goal
-Polish the UI, fix reporting channel accuracy, add edit functionality for observations, and fix PDF formatting. Multiple areas addressed in one pass.
+Add professional, concise English documentation to key files and do a final code cleanup pass. Documentation should be useful, not excessive — do NOT add obvious or redundant comments.
 
 ---
 
-## 1. Reporting Channels — CRITICAL ACCURACY FIX
+## 1. Add JSDoc Documentation
 
-The reporting channels on the Act page must be accurate. Update `data/channels.json` and both i18n files with the following corrections:
+### src/utils/ — All utility files
+- Add JSDoc to each exported function: brief description, @param, @returns
+- Keep descriptions to 1 line. Example:
+```ts
+/** Compute concern level based on checked signs and their severities. */
+```
 
-### 🇧🇷 Brazil
-- **Disque 100** — correct, keep as is
-- Description: National human rights hotline, free, 24/7. Managed by the Ministry of Human Rights.
+### src/hooks/ — All hook files
+- Add JSDoc to each exported hook: what it does and what it returns
+- Example:
+```ts
+/** Manages CRUD operations for cases and observations in IndexedDB. */
+```
 
-### 🇨🇦 Canada
-- **Kids Help Phone (1-800-668-6868)** — keep, but clarify it is primarily for children and youth seeking support, not for adults reporting abuse
-- **Add note:** "In Canada, child abuse reporting is handled at the provincial level. If you suspect abuse, contact your local Children's Aid Society or provincial child protection service. In an emergency, call 911."
-- Add i18n keys for this note in both EN and PT-BR
+### src/types/ — All type files
+- Add a brief comment above each interface/type describing what it represents
+- Example:
+```ts
+/** A documented case being monitored for potential child abuse. */
+export interface Case { ... }
+```
 
-### 🇺🇸 United States
-- **Childhelp (1-800-422-4453)** — keep, but clarify it is a guidance and referral hotline, NOT a direct reporting line
-- **Add note:** "The Childhelp Hotline provides guidance and referrals. To report abuse directly, contact your state's Child Protective Services (CPS). In an emergency, call 911."
-- Add i18n keys for this note in both EN and PT-BR
+### src/lib/ — db.ts, detectLocale.ts
+- Add brief JSDoc to exported functions and the database class/instance
 
-### 🇵🇹 Portugal
-- **IAC / SOS Criança (116 111)** — correct, keep as is
-- Verify the description mentions it is the official European child helpline number operated by Instituto de Apoio à Criança
-
-### 🇬🇧 United Kingdom
-- **NSPCC (0808 800 5000)** — correct, keep as is
-- Verify the description mentions adults can report concerns and get referrals to Children's Services
-
-### For ALL countries:
-- Always include "In an emergency, call [emergency number]" as the first line (911, 190, 112, 999 respectively)
-- Update both en.json and pt-BR.json with any new or modified text
-
----
-
-## 2. Edit Observations
-
-Currently observations can only be deleted. Add edit functionality:
-
-- Add an "Edit" button next to each observation in the expanded view (CaseDetail page)
-- Clicking "Edit" opens the observation form pre-filled with existing data (date, description, childInfo, signsChecked, concernLevel)
-- User can modify and save — this updates the existing observation in IndexedDB (not create a new one)
-- The "Edit" and "Delete" buttons should be subtle (text links or small outlined buttons), not large primary buttons
-- Add i18n keys: `observation.edit`, `observation.save`, `observation.cancel` to both language files
+### Do NOT add documentation to:
+- Page components (src/pages/*) — file names are self-descriptive
+- UI components (src/components/*) — unless the component has non-obvious props
+- i18n files, JSON data files, config files
+- Inline code that is already clear
 
 ---
 
-## 3. Design Polish
+## 2. Final Code Cleanup
 
-### 3a. Document page (CasesList) — Desktop alignment
-- Center the page title "DOCUMENT", subtitle, and "New Case" button within the max-width container on desktop
-- Case cards should also be centered within the same container
-- Keep the current mobile layout unchanged
-
-### 3b. Identify page — Desktop alignment
-- Center the page title "IDENTIFY" and subtitle within the max-width container on desktop
-- The category filter buttons should remain left-aligned (they're interactive, left-align is better for scanning)
-- The checklist items should remain in the centered max-width container as they are now
-- Keep the current mobile layout unchanged
-
-### 3c. Case Detail page
-- Add a "Type:" label before the category badge (e.g., "Type: Emotional" instead of just the badge)
-- Change "Export PDF" button text to "Export Full Report" / "Exportar Relatório Completo" — update both i18n files
-- Add slightly more internal padding to observation cards for better readability
-- Add i18n keys for "Type:" label in both language files
-
-### 3d. PDF Formatting Fix
-- Fix observation alignment/layout in exported PDF — observations should be cleanly formatted with consistent spacing
-- Remove seconds from time display — show "6:03 AM" not "6:03:00 AM" (both in PDF and in the case detail UI)
-- Ensure all observation fields are properly aligned and not overlapping
+### Check all files in src/ for:
+- **Comments in Portuguese** — translate any to English
+- **console.log statements** — remove all except those inside catch blocks (error logging is fine)
+- **Unused imports** — remove any
+- **Unused variables** — remove any
+- **Commented-out code** — remove any dead code
 
 ---
+
+## 3. Verify
+- Run `npm run build` — zero errors, zero warnings
+- All pages must work: /, /identify, /document, /document/new, /document/:id, /act, /sources
+- No functionality or visual changes — only documentation and cleanup
 
 ## Rules
-- All code/comments in English
-- User-facing text from i18n only — update BOTH en.json and pt-BR.json for every change
-- No `any` types
-- Do NOT change the overall design system (colors, fonts, dark theme)
-- Do NOT change navigation or routing
-- Do NOT modify the emergency button behavior
-- Follow existing conventions from CLAUDE.md
-- Run `npm run build` and verify zero errors before finishing
+- All documentation in English
+- Keep comments concise and professional — no filler
+- Do NOT change any logic, styling, or behavior
+- Do NOT modify i18n translation files

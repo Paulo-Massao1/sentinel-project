@@ -3,6 +3,7 @@ import { db, type Case, type Observation } from "../lib/db";
 
 export type { Case, Observation };
 
+/** Manages CRUD operations for cases and observations in IndexedDB. */
 export function useCases() {
   const cases = useLiveQuery(() =>
     db.cases.orderBy("updatedAt").reverse().toArray(),
@@ -78,6 +79,7 @@ export function useCases() {
   };
 }
 
+/** Provides live-query access to a single case and its observations. */
 export function useCaseDetail(caseId: number | undefined) {
   const caseData = useLiveQuery(
     () => (caseId ? db.cases.get(caseId) : undefined),
