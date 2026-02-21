@@ -1,0 +1,77 @@
+{
+  "brazil": {
+    "flag": "BR",
+    "main": {
+      "name": "Disque 100",
+      "phone": "100",
+      "detail": "24h, free"
+    },
+    "emergency": {
+      "phone": "190"
+    },
+    "online": {
+      "name": "App Direitos Humanos BR",
+      "url": "https://www.gov.br/mdh/pt-br/ondh"
+    }
+  },
+  "canada": {
+    "flag": "CA",
+    "main": {
+      "name": "Provincial Child Services",
+      "phone": null,
+      "detail": null
+    },
+    "emergency": {
+      "phone": "911"
+    },
+    "online": {
+      "name": "kidshelpphone.ca",
+      "url": "https://kidshelpphone.ca"
+    }
+  },
+  "usa": {
+    "flag": "US",
+    "main": {
+      "name": "Childhelp",
+      "phone": "1-800-422-4453",
+      "detail": "24/7"
+    },
+    "emergency": {
+      "phone": "911"
+    },
+    "online": {
+      "name": "childhelp.org",
+      "url": "https://www.childhelp.org"
+    }
+  },
+  "portugal": {
+    "flag": "PT",
+    "main": {
+      "name": "SOS Crianca",
+      "phone": "116 111",
+      "detail": null
+    },
+    "emergency": {
+      "phone": "112"
+    },
+    "online": {
+      "name": "iacrianca.pt",
+      "url": "https://www.iacrianca.pt"
+    }
+  },
+  "uk": {
+    "flag": "GB",
+    "main": {
+      "name": "NSPCC",
+      "phone": "0808 800 5000",
+      "detail": null
+    },
+    "emergency": {
+      "phone": "999"
+    },
+    "online": {
+      "name": "nspcc.org.uk",
+      "url": "https://www.nspcc.org.uk"
+    }
+  }
+}

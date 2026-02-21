@@ -175,5 +175,61 @@
       "observationLabel": "Observação {{number}}",
       "footer": "Este relatório foi gerado pelo Sentinel. Todas as observações são subjetivas e devem ser avaliadas por profissionais qualificados."
     }
+  },
+  "act": {
+    "title": "AGIR",
+    "subtitle": "O que fazer quando você suspeita que uma criança está sendo abusada.",
+    "back": "Voltar",
+    "do": {
+      "title": "O que fazer",
+      "step1": "Mantenha a calma. Não demonstre choque, raiva ou desespero.",
+      "step2": "Se a criança lhe contou algo: acredite nela. Diga que não é culpa dela.",
+      "step3": "Documente o que você observou.",
+      "documentLink": "Ir para Documentar",
+      "step4": "Denuncie à autoridade competente (veja os canais abaixo).",
+      "step5": "Lembre-se: você não precisa de provas. Uma suspeita bem fundamentada é suficiente."
+    },
+    "dont": {
+      "title": "O que não fazer",
+      "step1": "NÃO confronte o suposto agressor.",
+      "step2": "NÃO interrogue a criança com perguntas indutivas.",
+      "step3": "NÃO investigue por conta própria — deixe isso para os profissionais.",
+      "step4": "NÃO espere por certeza absoluta — a demora pode custar a segurança da criança.",
+      "step5": "NÃO discuta com muitas pessoas — proteja a identidade e dignidade da criança.",
+      "step6": "NÃO reaja com raiva ou descrença se a criança lhe contar algo."
+    },
+    "channels": {
+      "title": "Canais de denúncia",
+      "mainChannel": "Canal principal",
+      "emergency": "Emergência",
+      "online": "Recurso online",
+      "countries": {
+        "brazil": "Brasil",
+        "canada": "Canadá",
+        "usa": "EUA",
+        "portugal": "Portugal",
+        "uk": "Reino Unido"
+      }
+    },
+    "script": {
+      "title": "Roteiro sugerido para denúncia",
+      "intro": "Ao ligar, esteja preparado para informar:",
+      "item1": "Breve descrição da situação observada.",
+      "item2": "Tipo e frequência dos sinais.",
+      "item3": "Descrição da criança (idade aproximada, gênero).",
+      "item4": "Informações sobre o suposto agressor (relação com a criança).",
+      "item5": "Endereço ou local para investigação."
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "q1": "Preciso me identificar?",
+      "a1": "Na maioria dos países, não. As denúncias podem ser anônimas.",
+      "q2": "Preciso de provas?",
+      "a2": "Não. A suspeita é suficiente. Cabe às autoridades investigar.",
+      "q3": "E se eu estiver errado?",
+      "a3": "Denúncias feitas de boa-fé são protegidas por lei. É sempre melhor denunciar do que se calar.",
+      "q4": "O que acontece depois da denúncia?",
+      "a4": "O órgão receptor avalia a denúncia e determina os próximos passos. O tempo de resposta varia conforme o país e a gravidade da situação. Em casos urgentes, as autoridades podem agir imediatamente."
+    }
   }
 }
