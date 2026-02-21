@@ -108,7 +108,7 @@ All signs, severity classifications, and reporting channels are based on verifie
 
 ## Development
 
-This project was built by me using Claude (Anthropic) as a development tool for code generation, refactoring, and iteration. All architectural decisions, content verification, and quality control were done by the developer.
+This project was built by me using Claude (Anthropic) as a development tool for code generation, refactoring, and iteration. All architectural decisions, content verification, and quality control were done by me.
 
 ---
 
