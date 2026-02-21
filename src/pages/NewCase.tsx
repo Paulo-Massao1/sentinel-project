@@ -2,14 +2,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCases } from "../hooks/useCases";
+import { toLocalDatetimeValue } from "../utils/date";
 
 const categoryKeys = ["physical", "emotional", "sexual", "neglect", "unsure"] as const;
 const concernLevels = ["low", "medium", "high", "emergency"] as const;
-
-function toLocalDatetimeValue(date: Date): string {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
-}
 
 interface LocationState {
   category?: string;

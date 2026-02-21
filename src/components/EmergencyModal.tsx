@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import channelsData from "../data/channels.json";
-
-type Country = keyof typeof channelsData;
+import type { Country } from "../types";
 
 interface EmergencyModalProps {
   country: Country;

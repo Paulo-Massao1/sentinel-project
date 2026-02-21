@@ -3,8 +3,7 @@ import { useTranslation } from "react-i18next";
 import EmergencyModal from "./EmergencyModal";
 import channelsData from "../data/channels.json";
 import { detectCountry } from "../lib/detectLocale";
-
-type Country = keyof typeof channelsData;
+import type { Country } from "../types";
 
 const STORAGE_KEY = "sentinel-country";
 
