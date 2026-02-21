@@ -2,20 +2,18 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import EmergencyModal from "./EmergencyModal";
 import channelsData from "../data/channels.json";
+import { detectCountry } from "../lib/detectLocale";
 
 type Country = keyof typeof channelsData;
 
 const STORAGE_KEY = "sentinel-country";
-const DEFAULT_COUNTRY: Country = "usa";
 
 export default function EmergencyButton() {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
   const [country, setCountry] = useState<Country>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && stored in channelsData) return stored as Country;
-    return DEFAULT_COUNTRY;
+    return detectCountry() as Country;
   });
 
   useEffect(() => {

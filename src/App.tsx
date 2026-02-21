@@ -7,10 +7,14 @@ import CaseDetail from "./pages/CaseDetail";
 import Act from "./pages/Act";
 import Sources from "./pages/Sources";
 import EmergencyButton from "./components/EmergencyButton";
+import LanguageToggle from "./components/LanguageToggle";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <div className="fixed top-4 right-4 z-40 sm:right-5">
+        <LanguageToggle />
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/identify" element={<Identify />} />
