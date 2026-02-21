@@ -1,26 +1,29 @@
 import { useTranslation } from "react-i18next";
-import { useInstallPrompt } from "../hooks/useInstallPrompt";
+import { useInstallPrompt, useIosInstallHint } from "../hooks/useInstallPrompt";
 
 export default function InstallBanner() {
   const { t } = useTranslation();
   const { canInstall, promptInstall, dismiss } = useInstallPrompt();
+  const { showIosHint, dismissIosHint } = useIosInstallHint();
 
-  if (!canInstall) return null;
+  if (!canInstall && !showIosHint) return null;
 
   return (
     <div className="fixed bottom-16 left-4 right-4 z-40 mx-auto max-w-md rounded-lg border border-white/10 bg-[#1A2B4A] px-4 py-3 shadow-xl sm:bottom-20 sm:left-auto sm:right-5">
       <div className="flex items-center gap-3">
         <p className="flex-1 text-sm text-slate-200">
-          {t("install.message")}
+          {canInstall ? t("install.message") : t("install.iosHint")}
         </p>
+        {canInstall && (
+          <button
+            onClick={promptInstall}
+            className="shrink-0 rounded-lg bg-[#2C5F8A] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#2C5F8A]/80 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
+          >
+            {t("install.button")}
+          </button>
+        )}
         <button
-          onClick={promptInstall}
-          className="shrink-0 rounded-lg bg-[#2C5F8A] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#2C5F8A]/80 focus:outline-none focus:ring-2 focus:ring-[#2C5F8A]"
-        >
-          {t("install.button")}
-        </button>
-        <button
-          onClick={dismiss}
+          onClick={canInstall ? dismiss : dismissIosHint}
           className="shrink-0 text-slate-400 transition hover:text-white focus:outline-none"
           aria-label={t("install.dismiss")}
         >

@@ -1,57 +1,77 @@
-# Sentinel (Sentinela)
+# Sentinel — Project Guide for Claude Code
 
-A Progressive Web App that helps adults — teachers, neighbors, relatives, any citizen — identify signs of child abuse, document observations securely, and get directed to the correct reporting channels in their country.
+## What is Sentinel
+
+A Progressive Web App that helps adults identify signs of child abuse, document observations securely, and get directed to reporting channels in their country. 100% client-side, no backend, no tracking.
 
 **Tagline:** "Every child deserves someone who won't stay silent."
-**PT-BR:** "Toda criança merece alguém que não se cale."
-
-## Target Users
-
-Adults who suspect a child may be in danger but don't know how to act. NOT the child victim — the observing adult.
+**Live:** https://sentinel-protect.vercel.app/
+**Repo:** https://github.com/Paulo-Massao1/sentinel-project (branch: main)
 
 ## Stack
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
 | Framework | React 18 + TypeScript (strict) | Type safety, mature PWA ecosystem |
-| Build | Vite + vite-plugin-pwa | Fast builds, automatic service worker |
+| Build | Vite + vite-plugin-pwa | Fast builds, service worker, offline caching |
 | Styling | Tailwind CSS v4 | Consistent design system, responsive |
 | Routing | React Router v7 | Client-side navigation |
 | Local DB | Dexie.js (IndexedDB) | Persistent local storage across sessions |
 | i18n | react-i18next | EN (default) + PT-BR |
 | PDF | jsPDF + jspdf-autotable | Client-side report generation |
-| Hosting | Vercel | Free, HTTPS, global CDN |
+| Hosting | Vercel | Free, HTTPS, global CDN, auto-deploy on push |
 
 ## Architecture Principles
 
-- **No backend. No server. No exceptions.** 100% client-side. Zero data collection, no analytics, no cookies, no tracking. If we don't collect data, there's no data to leak.
-- **Local-first persistence.** All records stored in IndexedDB via Dexie.js. Data survives tab close, browser restart, and works offline. Only lost if user clears browser data or switches device.
-- **i18n everywhere.** All user-facing strings come from `src/i18n/en.json` and `src/i18n/pt-BR.json`. Never hardcode display text.
-- **Simplicity over complexity.** Code should be clean, readable, and maintainable. Not necessarily complex — but effective, secure, and with good UX.
+- **No backend. No server. No exceptions.** 100% client-side. Zero data collection, no analytics, no cookies, no tracking.
+- **Local-first persistence.** All records stored in IndexedDB via Dexie.js. Data survives sessions and works offline.
+- **i18n everywhere.** All user-facing strings come from i18n files. Never hardcode display text.
+- **Simplicity over complexity.** Clean, readable, maintainable code. Effective, secure, good UX.
 
 ## Project Structure
 
 ```
 src/
-├── pages/              # Full page components (one per route)
-│   ├── Home.tsx
-│   ├── Identify.tsx
-│   ├── CasesList.tsx   # /document — list of all cases
-│   ├── NewCase.tsx     # /document/new — create case + first observation
-│   └── CaseDetail.tsx  # /document/:id — case timeline + add observations
-├── components/         # Reusable UI components
-├── data/
-│   └── signs.json      # Abuse signs by category (sourced from UNICEF/WHO)
-├── i18n/
-│   ├── en.json         # English (default/base)
-│   └── pt-BR.json      # Portuguese Brazil
-├── lib/
-│   ├── db.ts           # Dexie.js database schema and config
-│   └── pdfExport.ts    # Per-case PDF report generation
-├── hooks/
-│   └── useCases.ts     # CRUD for cases and observations
-├── App.tsx             # Router config
-└── main.tsx            # Entry point
+├── components/          # Reusable UI components
+│   ├── EmergencyButton.tsx
+│   ├── EmergencyModal.tsx
+│   ├── InstallBanner.tsx
+│   └── LanguageToggle.tsx
+├── data/                # Static data (JSON)
+│   ├── channels.json    # Reporting channels by country
+│   ├── signs.json       # Abuse signs by category (UNICEF/WHO sourced)
+│   └── sources.json     # Official references and URLs
+├── hooks/               # Custom React hooks
+│   ├── useCases.ts      # CRUD for cases and observations
+│   └── useInstallPrompt.ts  # PWA install prompt logic
+├── i18n/                # Internationalization
+│   ├── en.json          # English (default)
+│   ├── pt-BR.json       # Portuguese Brazil
+│   └── index.ts         # i18n configuration
+├── lib/                 # Core utilities
+│   ├── db.ts            # Dexie.js database schema and config
+│   └── detectLocale.ts  # Language/country auto-detection
+├── pages/               # Full page components (one per route)
+│   ├── Home.tsx         # Landing page
+│   ├── Identify.tsx     # Signs checklist + severity engine
+│   ├── CasesList.tsx    # /document — list of all cases
+│   ├── NewCase.tsx      # /document/new — create case + first observation
+│   ├── CaseDetail.tsx   # /document/:id — timeline + observations
+│   ├── Act.tsx          # Reporting guidelines and channels
+│   └── Sources.tsx      # Official references
+├── types/               # TypeScript interfaces
+│   ├── case.ts          # Case, Observation interfaces
+│   ├── sign.ts          # Sign, Category, Severity types
+│   ├── channel.ts       # Country type
+│   ├── common.ts        # ConcernLevel type
+│   └── index.ts         # Barrel export
+├── utils/               # Business logic utilities
+│   ├── concernLevel.ts  # Concern level calculation + style helpers
+│   ├── date.ts          # Date formatting (no seconds)
+│   └── pdf.ts           # Per-case PDF report generation
+├── App.tsx              # Router config
+├── index.css            # Global styles
+└── main.tsx             # Entry point
 ```
 
 ## Routes
@@ -60,88 +80,88 @@ src/
 |------|------|-------------|
 | `/` | Home | Landing with tagline and 3 pillar cards |
 | `/identify` | Identify | Category selector → checklist → concern level → CTA |
-| `/document` | CasesList | All tracked cases |
+| `/document` | CasesList | All tracked cases with "My Cases" section |
 | `/document/new` | NewCase | Create case with first observation |
-| `/document/:id` | CaseDetail | Case timeline, add observations, export PDF |
-
-## Code Standards
-
-- All code, variables, components, file names, and comments in **English**
-- Clean code: small focused components, descriptive naming, proper TypeScript types
-- **No `any` types** — use proper interfaces and types
-- Every change that touches user-facing text **must update both** en.json and pt-BR.json
-- Commit messages: conventional commits (`feat:`, `fix:`, `refactor:`)
+| `/document/:id` | CaseDetail | Case timeline, add/edit observations, export PDF |
+| `/act` | Act | Do/don't guidelines, reporting channels by country, FAQ |
+| `/sources` | Sources | Official references and methodology |
 
 ## Design System
 
-- **Palette:** Navy `#1A2B4A` (primary bg), Blue `#2C5F8A` (accents/interactive), light tones for contrast
-- **Tone:** Sober, institutional, professional. No emojis. No childish colors. No decorative illustrations.
-- **Typography:** Clean, readable. Short sentences. No long paragraphs on mobile — users in crisis read little.
-- **Mobile-first** and responsive. Must look good on both phone and desktop.
-- **Visually polished.** The UI must look professional and trustworthy — not generic or ugly. This app deals with a serious cause. Users need to feel confidence when using it. Invest in good spacing, alignment, visual hierarchy, and consistent component styling. If something looks off, fix it.
-- **Intuitive UX.** Every screen should be self-explanatory. The user should never wonder "what do I do here?" or "where do I go next?". Clear labels, obvious CTAs, logical flow between pages.
+- **Palette:** Navy `#1A2B4A` (primary bg), Blue `#2C5F8A` (accents), light tones for contrast
 - **Concern level colors:** Red = Emergency, Orange = High, Blue = Medium, Gray = Low
+- **Tone:** Sober, institutional, professional. No emojis. No childish colors.
+- **Mobile-first** and responsive. Must look good on both phone and desktop.
+- **Visually polished.** Professional, trustworthy, clean spacing and alignment.
+- **Intuitive UX.** Every screen self-explanatory. Clear labels, obvious CTAs, logical flow.
 
 ## Data Model
 
 ### Cases table
 ```typescript
 interface Case {
-  id?: number;            // Auto-incremented
+  id?: number;
   name: string;           // User-defined (e.g., "Neighbor's child")
   category: string;       // physical | emotional | sexual | neglect | unsure
   status: string;         // monitoring | reported | closed
-  createdAt: string;      // ISO date
-  updatedAt: string;      // ISO date (updates on new observation)
+  createdAt: string;
+  updatedAt: string;
 }
 ```
 
 ### Observations table
 ```typescript
 interface Observation {
-  id?: number;            // Auto-incremented
+  id?: number;
   caseId: number;         // Foreign key → Cases
   date: string;           // ISO date of observation
   description: string;    // What was seen/heard/told
-  childInfo: string;      // Age, context, relationship (mainly first obs)
+  childInfo: string;      // Age, context, relationship (captured on case creation)
   signsChecked: string[]; // Sign IDs from checklist (optional)
   concernLevel: string;   // low | medium | high | emergency
-  createdAt: string;      // ISO date
+  createdAt: string;
 }
 ```
 
-## Severity Classification (based on UNICEF, WHO, Child Welfare Info Gateway, StatPearls/NIH)
+## Severity Classification (UNICEF, WHO, Child Welfare Info Gateway, StatPearls/NIH)
 
 **Severe** — direct indicators requiring immediate attention:
-- Physical: unexplained fractures, object-shaped marks (belt/wire), patterned burns
+- Physical: unexplained fractures, object-shaped marks, patterned burns
 - Sexual: difficulty walking/sitting, stained/torn underwear, STDs or pregnancy under 14, age-inappropriate sexual knowledge
 - Neglect: malnutrition, untreated serious medical issues
 
 **Moderate** — strong warning signs that need context:
 - Physical: unexplained bruises, injuries at different healing stages, flinches at touch
-- Emotional: extreme behavior swings, acts adult-like or regresses to baby-like behavior
+- Emotional: extreme behavior swings, acts adult-like or regresses
 - Sexual: fear of specific person/place, sexualized drawings/play, recurring nightmares
 - Neglect: poor hygiene, weather-inappropriate clothing, constant hunger
 
 **Mild** — concerning when combined with other signs:
-- Physical: always on alert, fear of going home, inconsistent stories about injuries
-- Emotional: speech/sleep disturbances, somatic complaints without medical cause, low self-esteem, disproportionate fear of mistakes
-- Neglect: frequent school absences, takes on adult responsibilities, sleeps in class
+- Physical: always on alert, fear of going home, inconsistent stories
+- Emotional: speech/sleep disturbances, somatic complaints, low self-esteem
+- Neglect: frequent school absences, takes on adult responsibilities
 
 ## Concern Level Engine
 
 | Level | Criteria | CTA |
 |-------|----------|-----|
-| Emergency | 2+ severe signs OR any severe sexual sign | Primary: "Call [emergency#] now" + Secondary: "Record what you observed" |
-| High | 1 severe + 2 moderate, OR 4+ moderate, OR 3+ categories | Primary: "See reporting guide" + Secondary: "Record what you observed" |
+| Emergency | 2+ severe signs OR any severe sexual sign | "Call [emergency#] now" + "Record what you observed" |
+| High | 1 severe + 2 moderate, OR 4+ moderate, OR 3+ categories | "See reporting guide" + "Record what you observed" |
 | Medium | 3+ signs any severity, OR 2+ moderate | "Record what you observed" + monitor advice |
 | Low | 1-2 mild/moderate | "Record what you observed" + keep observing |
 
-**Important:** Emergency and High levels must ALWAYS show a secondary "Record what you observed" CTA. The user must always have the option to document.
+## Reporting Channels
+
+| Country | Main Channel | Emergency | Online | Notes |
+|---------|-------------|-----------|--------|-------|
+| Brazil | Disque 100 (24h) | 190 | App Direitos Humanos BR | — |
+| Canada | Kids Help Phone 1-800-668-6868 | 911 | kidshelpphone.ca | Reporting handled at provincial level via Children's Aid Society |
+| USA | Childhelp 1-800-422-4453 | 911 | childhelp.org | Guidance/referral hotline, not direct reporting. Report via state CPS. |
+| Portugal | SOS Criança 116 111 | 112 | iacrianca.pt | IAC — European child helpline |
+| UK | NSPCC 0808 800 5000 | 999 | nspcc.org.uk | Adults can report concerns |
 
 ## Content Sources — DO NOT modify without verification
 
-All checklist signs, guidelines, and protocols are sourced from:
 - UNICEF — Caring for Child Survivors of Sexual Abuse Guidelines (2nd ed.)
 - WHO — Clinical Guidelines on Child Abuse and Neglect
 - Child Welfare Information Gateway (USA) — Signs and Symptoms
@@ -150,45 +170,47 @@ All checklist signs, guidelines, and protocols are sourced from:
 - California Dept. of Education — Child Abuse Identification & Reporting Guidelines
 - British Journal of Social Work (2025) — Children's Access to Child Protection Through Mobile Apps
 
-## Reporting Channels (MVP countries)
-
-| Country | Main Channel | Emergency | Online |
-|---------|-------------|-----------|--------|
-| Brazil | Disque 100 (24h, free) | 190 | App Direitos Humanos BR |
-| Canada | Provincial Child Services | 911 | kidshelpphone.ca |
-| USA | Childhelp 1-800-422-4453 | 911 | childhelp.org |
-| Portugal | SOS Criança 116 111 | 112 | iacrianca.pt |
-| UK | NSPCC 0808 800 5000 | 999 | nspcc.org.uk |
-
 ## What's Built ✅
 
-- [x] Home page — tagline, 3 pillar cards, privacy footer
-- [x] Identify — 5 category filters, 29 signs checklist, severity engine, dynamic CTAs by concern level
-- [x] Document — case-based system with multiple observations per case
-- [x] Case timeline — expandable cards with concern-level colored borders
-- [x] PDF export — per-case professional report with navy header, numbered observations
-- [x] Identify → Document integration — CTA goes to /document/new with pre-filled data
-- [x] i18n — EN + PT-BR fully translated
-- [x] Local persistence — IndexedDB via Dexie.js
-- [x] Git — connected to GitHub repo
+- Home page — tagline, 3 pillar cards, privacy footer, Sources link
+- Identify — 5 category filters, 29 signs checklist, severity engine, dynamic CTAs
+- Document system — case-based tracking, multiple observations per case, "My Cases" section
+- Case detail — expandable timeline, concern-level colored borders, numbered observations
+- Add/edit/delete observations — edit pre-fills form, delete requires confirmation
+- PDF export — per-case "Full Report" with navy header, numbered observations, formatted dates
+- Act page — do/don't guidelines, reporting channels by country with contextual notes, FAQ
+- Emergency button — fixed on all screens, country selector, confirmation modal, adapts per country
+- Sources page — official references organized by category
+- Auto-detect — language via navigator.language, country via timezone, manual override
+- i18n — full EN + PT-BR translations
+- PWA — service worker, offline caching, installable, app icons (192/512/maskable), iOS meta tags
+- Install prompt — banner with localStorage persistence, iOS Safari hint
+- Local persistence — IndexedDB via Dexie.js
+- Deployed on Vercel with auto-deploy on push
 
 ## What's NOT Built Yet ❌
 
-- [ ] Act page — do/don't guidelines, reporting channels by country, FAQ, suggested reporting script
-- [ ] Emergency button — fixed on all screens, confirmation modal adapted per country
-- [ ] Sources page — official references and methodology transparency
-- [ ] Auto-detect language/country — navigator.language + Intl.DateTimeFormat timezone (100% client-side, no geolocation API)
 - [ ] Encryption — user PIN + AES-256-GCM via Web Crypto API + PBKDF2 key derivation
-- [ ] PWA finalization — service worker offline caching, app icons (192/512), installable
+- [ ] Additional languages — Spanish, French
 - [ ] Automated tests — Vitest + Testing Library
+
+## Code Standards
+
+- All code, variables, components, file names, and comments in **English**
+- JSDoc documentation on utils, hooks, types, and lib files
+- No `any` types — use proper interfaces from `src/types/`
+- Business logic in `src/utils/` or `src/hooks/`, not in components
+- Every change that touches user-facing text **must update both** en.json and pt-BR.json
+- Commit messages: conventional commits (`feat:`, `fix:`, `refactor:`, `docs:`)
 
 ## Critical Rules
 
-1. **Child safety first.** All content must be accurate and based on official sources. No opinions.
+1. **Child safety first.** All content must be accurate and based on official sources.
 2. **No photo upload** in MVP.
 3. **Delete actions** always require confirmation modal.
 4. **PDF exports** are per-case, observations in chronological order (oldest first).
 5. **Emergency CTA** must always include secondary "Record what you observed" option.
 6. **No hardcoded strings.** Everything user-facing comes from i18n.
-7. **Back navigation** uses simple "← Back" link on all screen sizes.
-8. **Design quality matters.** Don't sacrifice visual quality for speed. Every screen must look professional, clean, and trustworthy. If the layout looks broken, misaligned, or ugly — fix it before moving on.
+7. **Back navigation** uses "← Back" link top-left corner on all screens.
+8. **Design quality matters.** Every screen must look professional and trustworthy.
+9. **Don't change what wasn't asked.** Only modify what the prompt explicitly requests.

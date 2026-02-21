@@ -262,6 +262,7 @@
   "emergency": {
     "button": "Emergência",
     "modalTitle": "Chamada de Emergência",
+    "modalCountryHint": "O número de emergência depende do seu país.",
     "modalMessage": "Você será direcionado para {{phone}} — {{service}}. Confirmar?",
     "cancel": "Cancelar",
     "callNow": "Ligar Agora",
@@ -278,7 +279,8 @@
     "switchLanguage": "Mudar para Inglês"
   },
   "install": {
-    "message": "Instale o Sentinel para acesso offline",
+    "message": "Instale o Sentinel como aplicativo",
+    "iosHint": "Para instalar: toque em Compartilhar, depois 'Adicionar à Tela Inicial'",
     "button": "Instalar",
     "dismiss": "Dispensar"
   }

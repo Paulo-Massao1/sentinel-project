@@ -262,6 +262,7 @@
   "emergency": {
     "button": "Emergency",
     "modalTitle": "Emergency Call",
+    "modalCountryHint": "The emergency number depends on your country.",
     "modalMessage": "You will be directed to {{phone}} — {{service}}. Confirm?",
     "cancel": "Cancel",
     "callNow": "Call Now",
@@ -278,7 +279,8 @@
     "switchLanguage": "Switch to Portuguese"
   },
   "install": {
-    "message": "Install Sentinel for offline access",
+    "message": "Install Sentinel as an app",
+    "iosHint": "To install: tap Share, then 'Add to Home Screen'",
     "button": "Install",
     "dismiss": "Dismiss"
   }

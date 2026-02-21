@@ -17,6 +17,9 @@ export default function EmergencyModal({ country, onClose }: EmergencyModalProps
         <h2 className="text-lg font-bold text-white">
           {t("emergency.modalTitle")}
         </h2>
+        <p className="mt-1.5 text-xs text-slate-400">
+          {t("emergency.modalCountryHint")}
+        </p>
         <p className="mt-3 text-sm leading-relaxed text-slate-300">
           {t("emergency.modalMessage", {
             phone,
