@@ -85,11 +85,30 @@ npm run preview
 
 ---
 
+## Content Sources
+
+All signs, severity classifications, and reporting channels are based on verified sources:
+
+- **UNICEF** — Caring for Child Survivors of Sexual Abuse Guidelines (2nd ed.)
+- **WHO** — Clinical Guidelines on Child Abuse and Neglect
+- **Child Welfare Information Gateway (USA)** — Signs and Symptoms of Abuse
+- **StatPearls / NIH** — Child Abuse and Neglect (Nursing), 2025
+- **ECA (Brazil)** — Estatuto da Criança e do Adolescente
+- **California Dept. of Education** — Child Abuse Identification & Reporting Guidelines
+
+---
+
 ## What's Next
 
 - **Encryption** — PIN-based encryption (AES-256-GCM) via Web Crypto API to protect stored case data
 - **Additional languages** — Spanish and French support
 - **Automated testing** — Vitest + React Testing Library
+
+---
+
+## Development
+
+This project was built by me using Claude (Anthropic) as a development tool for code generation, refactoring, and iteration. All architectural decisions, content verification, and quality control were done by the developer.
 
 ---
 
