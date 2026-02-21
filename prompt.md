@@ -1,1 +1,1 @@
-Fix: The emergency button on mobile is showing only the phone icon without any text. It needs a short label to be clear. Show "SOS" next to the icon on mobile instead of hiding all text. Keep the button compact but identifiable.
+![alt text](image.png)

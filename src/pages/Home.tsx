@@ -44,7 +44,13 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="pb-8 text-center text-xs text-slate-400">
-        {t("app.footer")}
+        <p>{t("app.footer")}</p>
+        <Link
+          to="/sources"
+          className="mt-2 inline-block text-[#2C5F8A] transition hover:text-white"
+        >
+          {t("nav.sources")}
+        </Link>
       </footer>
     </div>
   );

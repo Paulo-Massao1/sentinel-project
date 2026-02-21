@@ -10,7 +10,8 @@
     "document": "DOCUMENT",
     "documentDesc": "Record what you observed safely",
     "act": "ACT",
-    "actDesc": "Know where and how to report"
+    "actDesc": "Know where and how to report",
+    "sources": "Sources & Methodology"
   },
   "identify": {
     "title": "IDENTIFY",
@@ -231,6 +232,18 @@
       "q4": "What happens after I report?",
       "a4": "The receiving agency evaluates the report and determines next steps. Response times vary by country and severity of the situation. In urgent cases, authorities may act immediately."
     }
+  },
+  "sources": {
+    "title": "SOURCES",
+    "subtitle": "All content in this app is based exclusively on official protocols. No guidance is based on opinion.",
+    "back": "Back",
+    "sections": {
+      "international": "International Organizations",
+      "brazil": "Government — Brazil",
+      "internationalGov": "Government — International",
+      "academic": "Academic"
+    },
+    "commitment": "Before publication, all content will be reviewed by social work and child psychology professionals. This project has direct responsibility for children's safety and accepts no margin for error."
   },
   "emergency": {
     "button": "Emergency",

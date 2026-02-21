@@ -5,6 +5,7 @@ import CasesList from "./pages/CasesList";
 import NewCase from "./pages/NewCase";
 import CaseDetail from "./pages/CaseDetail";
 import Act from "./pages/Act";
+import Sources from "./pages/Sources";
 import EmergencyButton from "./components/EmergencyButton";
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/document/new" element={<NewCase />} />
         <Route path="/document/:id" element={<CaseDetail />} />
         <Route path="/act" element={<Act />} />
+        <Route path="/sources" element={<Sources />} />
       </Routes>
       <EmergencyButton />
     </BrowserRouter>

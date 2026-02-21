@@ -10,7 +10,8 @@
     "document": "DOCUMENTAR",
     "documentDesc": "Registre o que você observou com segurança",
     "act": "AGIR",
-    "actDesc": "Saiba onde e como denunciar"
+    "actDesc": "Saiba onde e como denunciar",
+    "sources": "Fontes e Metodologia"
   },
   "identify": {
     "title": "IDENTIFICAR",
@@ -231,6 +232,18 @@
       "q4": "O que acontece depois da denúncia?",
       "a4": "O órgão receptor avalia a denúncia e determina os próximos passos. O tempo de resposta varia conforme o país e a gravidade da situação. Em casos urgentes, as autoridades podem agir imediatamente."
     }
+  },
+  "sources": {
+    "title": "FONTES",
+    "subtitle": "Todo o conteúdo deste app é baseado exclusivamente em protocolos oficiais. Nenhuma orientação é baseada em opinião.",
+    "back": "Voltar",
+    "sections": {
+      "international": "Organizações Internacionais",
+      "brazil": "Governo — Brasil",
+      "internationalGov": "Governo — Internacional",
+      "academic": "Acadêmico"
+    },
+    "commitment": "Antes da publicação, todo o conteúdo será revisado por profissionais de assistência social e psicologia infantil. Este projeto tem responsabilidade direta com a segurança de crianças e não aceita margem para erro."
   },
   "emergency": {
     "button": "Emergência",

@@ -1,0 +1,77 @@
+{
+  "international": [
+    {
+      "id": "unicef-survivors",
+      "name": "UNICEF",
+      "title": "Caring for Child Survivors of Sexual Abuse Guidelines",
+      "edition": "2nd edition",
+      "url": "https://www.unicef.org/reports/caring-child-survivors-sexual-abuse-resource-package"
+    },
+    {
+      "id": "unicef-violence",
+      "name": "UNICEF",
+      "title": "Violence Against Children",
+      "url": "https://www.unicef.org/protection/violence-against-children"
+    },
+    {
+      "id": "who-guidelines",
+      "name": "WHO",
+      "title": "Clinical Guidelines on Child Abuse and Neglect",
+      "url": "https://www.who.int/publications-detail-redirect/9789241550147"
+    }
+  ],
+  "brazil": [
+    {
+      "id": "disque100",
+      "name": "Ministério dos Direitos Humanos",
+      "title": "Disque 100",
+      "url": "https://www.gov.br/mdh/pt-br/ondh/"
+    },
+    {
+      "id": "eca",
+      "name": "ECA",
+      "title": "Estatuto da Criança e do Adolescente (Art. 5, 17, 18, 98)",
+      "url": "https://www.planalto.gov.br/ccivil_03/leis/l8069.htm"
+    },
+    {
+      "id": "mec-guia",
+      "name": "MEC",
+      "title": "Guia Escolar: Métodos de Identificação de Sinais de Abuso e Exploração Sexual",
+      "url": "https://portaldoprofessor.mec.gov.br/storage/materiais/0000016936.pdf"
+    }
+  ],
+  "international_gov": [
+    {
+      "id": "cwi-gateway",
+      "name": "Child Welfare Information Gateway (USA)",
+      "title": "Signs and Symptoms of Abuse",
+      "url": "https://www.childwelfare.gov/topics/can/identifying/"
+    },
+    {
+      "id": "california-doe",
+      "name": "California Dept. of Education",
+      "title": "Child Abuse Identification & Reporting Guidelines",
+      "url": "https://www.cde.ca.gov/ls/ss/ap/childabusereporting.asp"
+    },
+    {
+      "id": "nspcc",
+      "name": "NSPCC (UK)",
+      "title": "Signs of Child Abuse",
+      "url": "https://www.nspcc.org.uk/what-is-child-abuse/"
+    }
+  ],
+  "academic": [
+    {
+      "id": "statpearls",
+      "name": "StatPearls / NIH",
+      "title": "Child Abuse and Neglect (Nursing), 2025",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459146/"
+    },
+    {
+      "id": "bjsw",
+      "name": "British Journal of Social Work",
+      "title": "Children's Access to Child Protection Through Mobile Apps (2025)",
+      "url": "https://academic.oup.com/bjsw/advance-article/doi/10.1093/bjsw/bcaf274/8380325"
+    }
+  ]
+}
