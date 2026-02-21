@@ -10,7 +10,8 @@
       "Bash(git config:*)",
       "Bash(git remote add:*)",
       "Bash(npm run build:*)",
-      "Bash(cd C:\\\\Users\\\\spaul\\\\OneDrive\\\\Área de Trabalho\\\\sentinel-project:*)"
+      "Bash(cd C:\\\\Users\\\\spaul\\\\OneDrive\\\\Área de Trabalho\\\\sentinel-project:*)",
+      "Bash(cd C:\\\\Users\\\\spaul\\\\OneDrive\\\\Área de Trabalho\\\\sentinel-project:*2)"
     ]
   }
 }

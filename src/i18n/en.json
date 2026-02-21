@@ -231,5 +231,20 @@
       "q4": "What happens after I report?",
       "a4": "The receiving agency evaluates the report and determines next steps. Response times vary by country and severity of the situation. In urgent cases, authorities may act immediately."
     }
+  },
+  "emergency": {
+    "button": "Emergency",
+    "modalTitle": "Emergency Call",
+    "modalMessage": "You will be directed to {{phone}} — {{service}}. Confirm?",
+    "cancel": "Cancel",
+    "callNow": "Call Now",
+    "selectCountry": "Your country",
+    "services": {
+      "brazil": "Military Police",
+      "canada": "Emergency Services",
+      "usa": "Emergency Services",
+      "portugal": "Emergency",
+      "uk": "Emergency Services"
+    }
   }
 }
