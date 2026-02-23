@@ -6,3 +6,4 @@ dev-dist
 .env
 prompt.md
 CLAUDE.md
+.claude
